@@ -1,4 +1,4 @@
-# projecto Ansible com Terraform
+# Projecto Ansible com Terraform :earth_americas:
 
 Este projecto utiliza **Ansible** e **Terraform** para gerir a infraestrutura em Microsoft **Azure**.
 
@@ -20,15 +20,15 @@ O Ansible é usado para as seguintes tarefas:
 - Criação de um playbook para gestão de utilizadores.
 - Configurações de Servidores Web, base de dados e Windows.
 
-## Terraform
+## Terraform 
 
 O Terraform é usado para criar servidores em Microsoft Azure.
 
-## Como usar
+## Como usar :question:
 
 Descarregar e correr no Control node em Ansible.
 
-## Contribuição
+## Contribuição  :handshake:
 
 Nah, deixa estar isso.
 

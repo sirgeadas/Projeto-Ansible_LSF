@@ -1,0 +1,45 @@
+variable "Prod"{
+    type = string
+    default = "West Europe"
+}
+
+variable "Disrec"{
+type = string
+default = "North Europe"
+}
+
+# Variáveis Production default Resource Group ----------
+variable "Default_RG_Prod" {
+  type        = string
+  default     = "grupo2-weu-prod-rg"
+  description = "Group #2 default Production resource group."
+}
+
+# Variáveis Disaster recovery default Resource Group ----------
+variable "Default_RG_Disrec" {
+  type        = string
+  default     = "grupo2-neu-dr-rg"
+  description = "Group #2 default Disaster recovery resource group."
+}
+
+
+# Variáveis da Vnet e Subnet ----------
+variable "Grupo2-weu-prod-vnet"{
+    type = list(string)
+    default = ["172.16.0.0/16"]
+}
+
+    variable "Grupo2-weu-prod-subnet"{
+    type = list(string)
+    default = ["172.16.0.0/24"]
+    }
+
+variable "Grupo2-neu-dr-vnet"{
+    type = list(string)
+    default = ["172.16.1.0/16"]
+}
+
+    variable "Grupo2-neu-dr-subnet"{
+    type = list(string)
+    default = ["172.16.1.0/24"]
+    }

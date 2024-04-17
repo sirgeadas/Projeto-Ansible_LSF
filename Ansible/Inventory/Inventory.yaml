@@ -2,23 +2,23 @@ all:
   children:
     linux_servers:
       children:
-        production_environment:
+        Production:
           hosts:
             web_server:
-              ansible_host: 192.168.1.10
+              ansible_host: xxx.xxx.xxx.xxx
             db_server:
-              ansible_host: 192.168.1.11
+              ansible_host: xxx.xxx.xxx.xxx
             ansible_control_node:
-              ansible_host: 192.168.1.12
-        recovery_environment:
+              ansible_host: xxx.xxx.xxx.xxx
+
+        Disaster:
           hosts:
-            web_server:
-              ansible_host: 192.168.2.10
-            db_server:
-              ansible_host: 192.168.2.11
-            ansible_control_node:
-              ansible_host: 192.168.2.12
+            web_server_dr:
+              ansible_host: xxx.xxx.xxx.xxx
+            db_server_dr:
+              ansible_host: xxx.xxx.xxx.xxx
+
     windows_servers:
       hosts:
-        client_server:
-          ansible_host: 192.168.3.
+        Win_server:
+          ansible_host: xxx.xxx.xxx.xxx

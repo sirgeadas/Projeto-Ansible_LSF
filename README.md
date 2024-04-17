@@ -34,4 +34,4 @@ Nah, deixa estar isso.
 
 ## Licença :scroll:
 
-Este projeto está licenciado sob a Licença MIT - Confirme o arquivo LICENSE.md para detalhes.
+Este projeto está licenciado sob a Licença MIT - Confirme o ficheiro LICENSE.md para detalhes.

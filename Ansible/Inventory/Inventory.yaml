@@ -1,0 +1,24 @@
+all:
+  children:
+    linux_servers:
+      children:
+        production_environment:
+          hosts:
+            web_server:
+              ansible_host: 192.168.1.10
+            db_server:
+              ansible_host: 192.168.1.11
+            ansible_control_node:
+              ansible_host: 192.168.1.12
+        recovery_environment:
+          hosts:
+            web_server:
+              ansible_host: 192.168.2.10
+            db_server:
+              ansible_host: 192.168.2.11
+            ansible_control_node:
+              ansible_host: 192.168.2.12
+    windows_servers:
+      hosts:
+        client_server:
+          ansible_host: 192.168.3.

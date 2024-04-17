@@ -1,6 +1,6 @@
 # Licença MIT
 
-Direitos autorais (c) 2024 Ludmilla Gimarães, Sara Peres e Filipe Geadas
+Direitos autorais (c) 2024 Ludmilla Guimarães, Sara Peres e Filipe Geadas
 
 É concedida permissão, gratuitamente, a qualquer pessoa que obtenha uma cópia
 deste software e dos arquivos de documentação associados (o "Software"), para lidar

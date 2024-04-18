@@ -9,7 +9,7 @@ Existem dois ambientes neste projecto:
 1. **Produção**
 2. **Disaster Recovery**
 
-Cada ambiente está hospedado em uma região diferente.
+Cada ambiente está hospedado numa região diferente.
 
 ## Ansible
 

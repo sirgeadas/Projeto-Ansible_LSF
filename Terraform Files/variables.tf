@@ -1,3 +1,4 @@
+# Variáveis que definem as Regiões ----------
 variable "Prod"{
     type = string
     default = "West Europe"
@@ -42,4 +43,17 @@ variable "Grupo2-neu-dr-vnet"{
 variable "Grupo2-neu-dr-subnet"{
 type = list(string)
 default = ["10.1.0.0/24"]
+}
+
+# Variáveis para apelidar as máquinas ----------
+variable "Grupo2-weu-prod-vm-apache" {
+  type        = string
+  default     = "Grupo2-WEU-PROD-APACHE"
+  description = "Group #2 Production VM name."
+}
+
+variable "Grupo2-neu-dr-vm-apache" {
+  type        = string
+  default     = "Grupo2-NEU-DR-APACHE"
+  description = "Group #2 Disaster recovery VM name."
 }

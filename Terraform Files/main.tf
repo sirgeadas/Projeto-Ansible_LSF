@@ -1,4 +1,9 @@
-# Criação da Vnet ------------------------------
+#====================================================================#
+#                    Infraestrutura de Rede:                         #
+# ===================================================================#
+
+
+#-------------------- Criação da Vnet -------------------------------#
 
 resource "azurerm_virtual_network" "grupo2-weu-prod-vnet" {
 name = "Grupo2-WEU-PROD-VNET"
@@ -15,18 +20,24 @@ resource_group_name = var.Default_RG_Disrec
 address_space       = var.Grupo2-neu-dr-vnet
 }
 
-# Criação da Subnet ----------------------------
+#------------------- Criação da Subnet ------------------------------#
 
 resource "azurerm_subnet" "grupo2-new-prod-subnet" {
-  name                 = "Grupo2-WEU-PROD-SU"
+  name                 = "GRUPO2-WEU-PROD-SU"
   resource_group_name  = var.Default_RG_Prod
   virtual_network_name = azurerm_virtual_network.grupo2-weu-prod-vnet.name
   address_prefixes     = var.Grupo2-weu-prod-subnet
 }
 
 resource "azurerm_subnet" "grupo2-new-dr-subnet" {
-  name                 = "Grupo2-NEU-DR-SUBNET"
+  name                 = "GRUPO2-NEU-DR-SUBNET"
   resource_group_name  = var.Default_RG_Disrec
   virtual_network_name = azurerm_virtual_network.grupo2-neu-dr-vnet.name
   address_prefixes     = var.Grupo2-neu-dr-subnet
 }
+
+#====================================================================#
+#                    Criação das máquinas Virtuais:                  #
+# ===================================================================#
+
+

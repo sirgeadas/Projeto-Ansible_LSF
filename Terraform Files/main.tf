@@ -42,8 +42,8 @@ resource "azurerm_subnet" "grupo2-neu-dr-subnet" {
 
 #-------------------- Criação da máquina Apache PROD ----------------#
 
-resource "azurerm_network_interface" "nic" {
-  name                = "Apache-NIC"
+resource "azurerm_network_interface" "APACHE-PROD-NIC" {
+  name                = "Apache-PROD-NIC"
   location            = var.Prod
   resource_group_name = var.Default_RG_Prod
 
@@ -54,11 +54,11 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_virtual_machine" "Apache-Prod" {
+resource "azurerm_virtual_machine" "APACHE-PROD" {
   name                  = var.Grupo2-weu-prod-vm-apache
   location              = var.Prod
   resource_group_name   = var.Default_RG_Prod
-  network_interface_ids = [azurerm_network_interface.nic.id]
+  network_interface_ids = [azurerm_network_interface.APACHE-PROD-NIC]
   vm_size               = "Standard_B1s"
 
 storage_os_disk {
@@ -92,4 +92,63 @@ storage_os_disk {
     }
   }
 }
+#-------------------- Criação da máquina Apache Disaster Recovery  ----------------#
 
+resource "azurerm_network_interface" "APACHE-DR-NIC" {
+  name                = "Apache-DR-NIC"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-neu-dr-subnet.id
+    private_ip_address_allocation = "Static"
+  }
+}
+
+resource "azurerm_virtual_machine" "APACHE-DR" {
+  name                  = var.Grupo2-neu-dr-vm-apache
+  location              = var.Disrec
+  resource_group_name   = var.Default_RG_Disrec
+  network_interface_ids = [azurerm_network_interface.APACHE-DR-NIC]
+  vm_size               = "Standard_B1s"
+
+  storage_os_disk {
+    name              = "Ubuntu-DR-Disk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "StandardSSD_LRS"
+    disk_size_gb      = 30
+  }
+
+  delete_os_disk_on_termination    = false
+  delete_data_disks_on_termination = false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "ansible"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/ansible/.ssh/authorized_keys"
+      key_data = file("~/.ssh/Apache-DR-key.pub")
+    }
+  }
+
+  os_profile_secrets {
+    source_vault_id = azurerm_key_vault.example.id
+    vault_certificates {
+      certificate_url = azurerm_key_vault_certificate.example.id
+      certificate_store = "My"
+    }
+  }
+}

@@ -51,6 +51,7 @@ resource "azurerm_network_interface" "APACHE-PROD-NIC" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.grupo2-weu-prod-subnet.id
     private_ip_address_allocation = "Static"
+    private_ip_address = "10.0.0.10"
   }
 }
 
@@ -58,7 +59,7 @@ resource "azurerm_virtual_machine" "APACHE-PROD" {
   name                  = var.Grupo2-weu-prod-vm-apache
   location              = var.Prod
   resource_group_name   = var.Default_RG_Prod
-  network_interface_ids = [azurerm_network_interface.APACHE-PROD-NIC]
+  network_interface_ids = [azurerm_network_interface.APACHE-PROD-NIC.id]
   vm_size               = "Standard_B1s"
 
 storage_os_disk {
@@ -103,6 +104,7 @@ resource "azurerm_network_interface" "APACHE-DR-NIC" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.grupo2-neu-dr-subnet.id
     private_ip_address_allocation = "Static"
+    private_ip_address = "10.1.0.10"
   }
 }
 
@@ -110,7 +112,7 @@ resource "azurerm_virtual_machine" "APACHE-DR" {
   name                  = var.Grupo2-neu-dr-vm-apache
   location              = var.Disrec
   resource_group_name   = var.Default_RG_Disrec
-  network_interface_ids = [azurerm_network_interface.APACHE-DR-NIC]
+  network_interface_ids = [azurerm_network_interface.APACHE-DR-NIC.id]
   vm_size               = "Standard_B1s"
 
   storage_os_disk {

@@ -22,14 +22,14 @@ address_space       = var.Grupo2-neu-dr-vnet
 
 #------------------- Criação da Subnet ------------------------------#
 
-resource "azurerm_subnet" "grupo2-new-prod-subnet" {
+resource "azurerm_subnet" "grupo2-weu-prod-subnet" {
   name                 = "GRUPO2-WEU-PROD-SU"
   resource_group_name  = var.Default_RG_Prod
   virtual_network_name = azurerm_virtual_network.grupo2-weu-prod-vnet.name
   address_prefixes     = var.Grupo2-weu-prod-subnet
 }
 
-resource "azurerm_subnet" "grupo2-new-dr-subnet" {
+resource "azurerm_subnet" "grupo2-neu-dr-subnet" {
   name                 = "GRUPO2-NEU-DR-SUBNET"
   resource_group_name  = var.Default_RG_Disrec
   virtual_network_name = azurerm_virtual_network.grupo2-neu-dr-vnet.name
@@ -49,7 +49,7 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.grupo2-new-prod-subnet.id
+    subnet_id                     = azurerm_subnet.grupo2-weu-prod-subnet.id
     private_ip_address_allocation = "Static"
   }
 }
@@ -60,6 +60,7 @@ resource "azurerm_virtual_machine" "Apache-Prod" {
   resource_group_name   = var.Default_RG_Prod
   network_interface_ids = [azurerm_network_interface.nic.id]
   vm_size               = "Standard_B1s"
+
 storage_os_disk {
   name              = "Apache-Prod-Disk"
   caching           = "ReadWrite"
@@ -68,9 +69,8 @@ storage_os_disk {
   disk_size_gb      = 30
 }
 
-
-  delete_os_disk_on_termination    = true
-  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = false
+  delete_data_disks_on_termination = false
 
   storage_image_reference {
     publisher = "Canonical"

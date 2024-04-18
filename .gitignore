@@ -4,3 +4,5 @@ Terraform Files/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.
 Terraform Files/.terraform.lock.hcl
 .vscode/settings.json
 .vscode
+.gitignore
+.gitignore

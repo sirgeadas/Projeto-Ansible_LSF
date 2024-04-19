@@ -237,6 +237,65 @@ storage_os_disk {
   }
 }
 
+# Criação da máquina WINDOWS SERVER PROD ----------------#
+
+resource "azurerm_public_ip" "grupo2-weu-prod-windows-pip" {
+  name                = "Grupo2-WEU-PROD-WINDOWS-PIP"
+  location            = var.Prod
+  resource_group_name = var.Default_RG_Prod
+  allocation_method   = "Dynamic"
+}
+
+resource "azurerm_network_interface" "WINDOWS-PROD-NIC" {
+  name                = "WINDOWS-PROD-NIC"
+  location            = var.Prod
+  resource_group_name = var.Default_RG_Prod
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-weu-prod-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.0.2.20"
+    public_ip_address_id         = azurerm_public_ip.grupo2-weu-prod-windows-pip.id
+  }
+}
+
+resource "azurerm_virtual_machine" "WINDOWS-PROD" {
+  name                  = var.Grupo2-weu-prod-vm-WINDOWSSERVER
+  location              = var.Prod
+  resource_group_name   = var.Default_RG_Prod
+  network_interface_ids = [azurerm_network_interface.WINDOWS-PROD-NIC.id]
+  vm_size               = "Standard_B1s"
+
+  storage_os_disk {
+    name              = "WINDOWS-PROD-Disk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "StandardSSD_LRS"
+    disk_size_gb      = 127
+  }
+
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
+
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-datacenter-azure-edition"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "WinDR"
+    admin_password = "Formando2022"
+  }
+
+  os_profile_windows_config {
+    provision_vm_agent = true
+  }
+}
+
 
 ######################## Máquinas Disaster Recovery ###########################
 
@@ -438,6 +497,8 @@ resource "azurerm_network_interface" "WINDOWS-DR-NIC" {
     subnet_id                     = azurerm_subnet.grupo2-neu-dr-subnet.id
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.1.2.20"
+    public_ip_address_id          = azurerm_public_ip.grupo2-neu-dr-windows-pip.id
+
   }
 }
 

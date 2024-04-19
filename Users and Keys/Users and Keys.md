@@ -1,34 +1,41 @@
-Ansible Machines:
-
+# Ansible Machines:
 
 Name: Grupo2-weu-prod-vm-ANSIBLE
 User: ansible
-SSH Key: 
+SSH Key: ControlNodePROD
 
 Machine: Grupo2-neu-dr-vm-ANSIBLE
-User: 
-SSH Key:
+User: ansible
+SSH Key: ControlNodeDR
 
-Web Server Machines:
+# Web Server Machines:
 
 Machine: Grupo2-weu-prod-vm-WEBSERVER
 User: ansible
-SSH Key:
+SSH Key: WebServerPROD
 
 Machine: Grupo2-neu-dr-vm-WEBSERVER
 User: ansible
-SSH Key:
+SSH Key: WebServerDR
 
 
+# Windows Server Machines:
 
 Machine: Grupo2-weu-prod-vm-WINDOWSSERVER
-User: ansible
-SSH Key:
+User= WinDR
+Password: Formando2022
 
 Machine: Grupo2-neu-dr-vm-WINDOWSSERVER
-User: ansible
+User= WinDR
+Password: Formando2022
+
+
+# Database Server Machines:
 
 Machine: Grupo2-weu-prod-vm-DATABASESERVER
 User: ansible
+SSH Keys: DatabaseServerPROD
+
 Machine: Grupo2-neu-dr-vm-DATABASESERVER
 User: ansible
+SSH Keys: DatabaseServerDR

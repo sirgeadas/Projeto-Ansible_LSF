@@ -1,18 +1,34 @@
-variable "Grupo2-weu-prod-vm-ANSIBLE" {
-
-variable "Grupo2-neu-dr-vm-ANSIBLE" {
+Ansible Machines:
 
 
-variable "Grupo2-weu-prod-vm-WEBSERVER" {
+Name: Grupo2-weu-prod-vm-ANSIBLE
+User: ansible
+SSH Key: 
+
+Machine: Grupo2-neu-dr-vm-ANSIBLE
+User: 
+SSH Key:
+
+Web Server Machines:
+
+Machine: Grupo2-weu-prod-vm-WEBSERVER
+User: ansible
+SSH Key:
+
+Machine: Grupo2-neu-dr-vm-WEBSERVER
+User: ansible
+SSH Key:
 
 
-variable "Grupo2-neu-dr-vm-WEBSERVER" {
 
+Machine: Grupo2-weu-prod-vm-WINDOWSSERVER
+User: ansible
+SSH Key:
 
-variable "Grupo2-weu-prod-vm-WINDOWSSERVER" {
+Machine: Grupo2-neu-dr-vm-WINDOWSSERVER
+User: ansible
 
-variable "Grupo2-neu-dr-vm-WINDOWSSERVER" {
-
-variable "Grupo2-weu-prod-vm-DATABASESERVER" {
-
-variable "Grupo2-neu-dr-vm-DATABASESERVER" {
+Machine: Grupo2-weu-prod-vm-DATABASESERVER
+User: ansible
+Machine: Grupo2-neu-dr-vm-DATABASESERVER
+User: ansible

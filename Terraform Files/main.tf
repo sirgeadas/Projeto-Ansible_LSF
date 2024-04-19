@@ -243,7 +243,7 @@ resource "azurerm_public_ip" "grupo2-weu-prod-windows-pip" {
   name                = "Grupo2-WEU-PROD-WINDOWS-PIP"
   location            = var.Prod
   resource_group_name = var.Default_RG_Prod
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "WINDOWS-PROD-NIC" {

@@ -5,20 +5,19 @@ all:
         Production:
           hosts:
             web_server:
-              ansible_host: xxx.xxx.xxx.xxx
+              ansible_host: 10.0.2.10
             db_server:
-              ansible_host: xxx.xxx.xxx.xxx
+              ansible_host: 10.0.2.15
             ansible_control_node:
-              ansible_host: xxx.xxx.xxx.xxx
-
+              ansible_host: 10.0.1.111
         Disaster:
           hosts:
             web_server_dr:
-              ansible_host: xxx.xxx.xxx.xxx
+              ansible_host: 10.1.2.10
             db_server_dr:
-              ansible_host: xxx.xxx.xxx.xxx
+              ansible_host: 10.1.2.15
             ansible_control_node:
-              ansible_host: xxx.xxx.xxx.xxx
+              ansible_host: 10.1.1.111
               
     windows_servers:
       hosts:

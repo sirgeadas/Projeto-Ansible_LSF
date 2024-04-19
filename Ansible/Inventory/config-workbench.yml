@@ -1,0 +1,18 @@
+---
+- name: Configuração do MySQL Workbench no Servidor Windows
+  hosts: windows_server
+  become: yes
+
+  tasks:
+    - name: Download do MySQL Workbench installer
+      win_uri:
+        url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.28-winx64.msi
+        dest: C:\temp\mysql-workbench-installer.msi
+        force: yes
+
+    - name: Instalar MySQL Workbench
+      win_command: msiexec /i C:\temp\mysql-workbench-installer.msi /qb
+
+    - name: Configurar conexão com a base de dados MySQL
+      win_shell: |
+        "C:\Program Files\MySQL\MySQL Workbench 8.0\MySQLWorkbench.exe" -t -t --admin -h IP_DO_SERVIDOR_MYSQL -u root -p senha_do_root

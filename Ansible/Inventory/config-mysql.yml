@@ -1,0 +1,36 @@
+---
+- name: Configuração do Servidor MySQL
+  hosts: dbserver
+  become: yes
+
+  tasks:
+    - name: Instalar MySQL Server
+      yum:
+        name: mysql-server
+        state: present
+
+    - name: Habilitar e iniciar serviço MySQL
+      service:
+        name: mysqld
+        state: started
+        enabled: yes
+
+    - name: Configurar senha do root do MySQL
+      mysql_user:
+        name: root
+        password: senha_do_root
+        login_user: root
+        login_password: ""
+        host: "{{ item }}"
+        check_implicit_admin: yes
+      with_items:
+        - "{{ ansible_default_ipv4.address }}"
+        - 127.0.0.1
+        - localhost
+
+    - name: Criar banco de dados para o Wordpress
+      mysql_db:
+        name: nome_do_banco
+        login_user: root
+        login_password: senha_do_root
+        state: present

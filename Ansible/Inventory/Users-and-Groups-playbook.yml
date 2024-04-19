@@ -1,0 +1,33 @@
+---
+name: Gestao de utilizadores e grupos
+hosts: all
+become: yes
+
+tasks:
+  - name: criar grupo dev
+    group: 
+      name: dev
+      state: present
+
+  - name: criar grupo dba
+    group: 
+      name: dba
+      state: present 
+
+  - name: criar usuario developer
+    user:
+      name: developer
+      group: dev 
+      state: present
+
+  - name: criar usuario dbdev
+    user: 
+      name: dbdev
+      groups: dev
+      state: present  
+
+  - name: criar usuario dbadmin
+    user:
+      name: dbadmin
+      groups: dba
+      state: present                          

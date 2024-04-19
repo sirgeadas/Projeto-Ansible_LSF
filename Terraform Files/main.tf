@@ -3,7 +3,7 @@
 # ===================================================================#
 
 
-#-------------------- Criação da Vnet -------------------------------#
+# Criação das Vnet's -------------------------------#
 
 resource "azurerm_virtual_network" "grupo2-weu-prod-vnet" {
 name = "Grupo2-WEU-PROD-VNET"
@@ -20,7 +20,7 @@ resource_group_name = var.Default_RG_Disrec
 address_space       = var.Grupo2-neu-dr-vnet
 }
  
-#------------------- Criação da Subnet ------------------------------#
+# Criação das Subnet's ------------------------------#
 
 resource "azurerm_subnet" "grupo2-weu-prod-subnet" {
   name                 = "GRUPO2-WEU-PROD-SUBNET"
@@ -54,14 +54,81 @@ resource "azurerm_subnet" "grupo2-neu-dr-ansible-subnet" {
 
 
 #====================================================================#
-#                    Criação das máquinas Virtuais:                  #
+#                         Máquinas Virtuais:                         #
 # ===================================================================#
 
 
-################### Máquinas Produção ###################
+############################# Máquinas Produção ##############################
 
 
-#-------------------- Criação da máquina WEBSERVER PROD ----------------#
+# Criação da máquina ANSIBLE PROD ----------------#
+
+resource "azurerm_public_ip" "grupo2-weu-prod-ansible-pip" { 
+
+  name                = "Grupo2-WEU-PROD-ANSIBLE-PIP" 
+
+  location            = var.Prod 
+
+  resource_group_name = var.Default_RG_Prod
+
+  allocation_method   = "Static" 
+
+} 
+
+resource "azurerm_network_interface" "ANSIBLE-PROD-NIC" {
+  name                = "ANSIBLE-PROD-NIC"
+  location            = var.Prod
+  resource_group_name = var.Default_RG_Prod
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-weu-prod-ansible-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.0.1.111"
+    public_ip_address_id          = azurerm_public_ip.grupo2-weu-prod-ansible-pip.id
+  }
+}
+
+resource "azurerm_virtual_machine" "ANSIBLE-PROD" {
+  name                  = var.Grupo2-weu-prod-vm-ANSIBLE
+  location              = var.Prod
+  resource_group_name   = var.Default_RG_Prod
+  network_interface_ids = [azurerm_network_interface.ANSIBLE-PROD-NIC.id]
+  vm_size               = "Standard_B1s"
+
+storage_os_disk {
+  name              = "ANSIBLE-Prod-Disk"
+  caching           = "ReadWrite"
+  create_option     = "FromImage"
+  managed_disk_type = "StandardSSD_LRS"
+  disk_size_gb      = 30
+}
+
+  delete_os_disk_on_termination    = false
+  delete_data_disks_on_termination = false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "controlnode"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/controlnode/.ssh/authorized_keys"
+      key_data = file("~/.ssh/ControlNodePROD.pub")
+    }
+  }
+}
+
+# Criação da máquina WEBSERVER PROD ----------------#
 
 resource "azurerm_network_interface" "WEBSERVER-PROD-NIC" {
   name                = "WEBSERVER-PROD-NIC"
@@ -115,10 +182,133 @@ storage_os_disk {
   }
 }
 
-################### Máquinas Disaster Recovery ###################
+# Criação da máquina DATABASE SERVER PROD ----------------#
+
+resource "azurerm_network_interface" "DATABASESERVER-PROD-NIC" {
+  name                = "DATABASE-PROD-NIC"
+  location            = var.Prod
+  resource_group_name = var.Default_RG_Prod
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-weu-prod-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address = "10.0.2.15"
+  }
+}
 
 
-#-------------------- Criação da máquina WEBSERVER Disaster Recovery  ----------------#
+resource "azurerm_virtual_machine" "DATABASESERVER-PROD" {
+  name                  = var.Grupo2-weu-prod-vm-DATABASESERVER
+  location              = var.Prod
+  resource_group_name   = var.Default_RG_Prod
+  network_interface_ids = [azurerm_network_interface.DATABASESERVER-PROD-NIC.id]
+  vm_size               = "Standard_B1s"
+
+storage_os_disk {
+  name              = "DATABASESERVER-Prod-Disk"
+  caching           = "ReadWrite"
+  create_option     = "FromImage"
+  managed_disk_type = "StandardSSD_LRS"
+  disk_size_gb      = 30
+}
+
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "ansible"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/ansible/.ssh/authorized_keys"
+      key_data = file("~/.ssh/DatabaseServerPROD.pub")
+    }
+  }
+}
+
+
+######################## Máquinas Disaster Recovery ###########################
+
+# Criação da máquina ANSIBLE DR ----------------#
+
+resource "azurerm_public_ip" "grupo2-neu-dr-ansible-pip" { 
+
+  name                = "Grupo2-NEU-DR-ANSIBLE-PIP" 
+
+  location            = var.Disrec
+
+  resource_group_name = var.Default_RG_Disrec
+
+  allocation_method   = "Static" 
+
+} 
+
+resource "azurerm_network_interface" "ANSIBLE-DR-NIC" {
+  name                = "ANSIBLE-DR-NIC"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-neu-dr-ansible-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.1.1.111"
+    public_ip_address_id          = azurerm_public_ip.grupo2-neu-dr-ansible-pip.id
+}
+}
+
+resource "azurerm_virtual_machine" "ANSIBLE-DR" {
+  name                  = var.Grupo2-neu-dr-vm-ANSIBLE
+  location              = var.Disrec
+  resource_group_name   = var.Default_RG_Disrec
+  network_interface_ids = [azurerm_network_interface.ANSIBLE-DR-NIC.id]
+  vm_size               = "Standard_B1s"
+
+storage_os_disk {
+  name              = "ANSIBLE-DR-Disk"
+  caching           = "ReadWrite"
+  create_option     = "FromImage"
+  managed_disk_type = "StandardSSD_LRS"
+  disk_size_gb      = 30
+}
+
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "controlnode"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/controlnode/.ssh/authorized_keys"
+      key_data = file("~/.ssh/ControlNodeDR.pub")
+    }
+  }
+}
+
+
+# Criação da máquina WEBSERVER DR ----------------#
 
 resource "azurerm_network_interface" "WEBSERVER-DR-NIC" {
   name                = "WEBSERVER-DR-NIC"
@@ -148,8 +338,8 @@ resource "azurerm_virtual_machine" "WEBSERVER-DR" {
     disk_size_gb      = 30
   }
 
-  delete_os_disk_on_termination    = false
-  delete_data_disks_on_termination = false
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
 
   storage_image_reference {
     publisher = "Canonical"
@@ -172,3 +362,146 @@ resource "azurerm_virtual_machine" "WEBSERVER-DR" {
   }
 
 }
+
+
+# Criação da máquina DATABASE SERVER DR ----------------#
+
+resource "azurerm_network_interface" "DATABASESERVER-DR-NIC" {
+  name                = "DATABASE-DR-NIC"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-neu-dr-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address = "10.1.2.15"
+  }
+}
+
+
+resource "azurerm_virtual_machine" "DATABASESERVER-DR" {
+  name                  = var.Grupo2-neu-dr-vm-DATABASESERVER
+  location              = var.Disrec
+  resource_group_name   = var.Default_RG_Disrec
+  network_interface_ids = [azurerm_network_interface.DATABASESERVER-DR-NIC.id]
+  vm_size               = "Standard_B1s"
+
+storage_os_disk {
+  name              = "DATABASESERVER-DR-Disk"
+  caching           = "ReadWrite"
+  create_option     = "FromImage"
+  managed_disk_type = "StandardSSD_LRS"
+  disk_size_gb      = 30
+}
+
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "ansible"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/ansible/.ssh/authorized_keys"
+      key_data = file("~/.ssh/DatabaseServerDR.pub")
+    }
+  }
+}
+
+# Criação da máquina WINDOWS SERVER DR ----------------#
+
+resource "azurerm_public_ip" "grupo2-neu-dr-windows-pip" {
+  name                = "Grupo2-NEU-DR-WINDOWS-PIP"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+  allocation_method   = "Dynamic"
+}
+
+resource "azurerm_network_interface" "WINDOWS-DR-NIC" {
+  name                = "WINDOWS-DR-NIC"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.grupo2-neu-dr-subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.1.2.20"
+  }
+}
+
+resource "azurerm_virtual_machine" "WINDOWS-DR" {
+  name                  = var.Grupo2-neu-dr-vm-WINDOWSSERVER
+  location              = var.Disrec
+  resource_group_name   = var.Default_RG_Disrec
+  network_interface_ids = [azurerm_network_interface.WINDOWS-DR-NIC.id]
+  vm_size               = "Standard_B1s"
+
+  storage_os_disk {
+    name              = "WINDOWS-DR-Disk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "StandardSSD_LRS"
+    disk_size_gb      = 127
+  }
+
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
+
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-datacenter-azure-edition"
+    version   = "latest"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "WinDR"
+    admin_password = "Formando2022"
+  }
+
+  os_profile_windows_config {
+    provision_vm_agent = true
+  }
+}
+
+
+#====================================================================#
+#                               NSG's:                               #
+# ===================================================================#
+
+# WINDOWS SERVER DR NSG ----------------#
+resource "azurerm_network_security_group" "grupo2-neu-dr-WINDOWSSERVER-nsg" {
+  name                = "Grupo2-WEU-PROD-WINDOWSSERVER-NSG"
+  location            = var.Disrec
+  resource_group_name = var.Default_RG_Disrec
+  security_rule {
+    name                       = "RDP"
+    priority                   = 1000
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+resource "azurerm_network_interface_security_group_association" "WindowsServerDR-NIC-NSG" {
+  network_interface_id      = azurerm_network_interface.WINDOWS-DR-NIC.id
+  network_security_group_id = azurerm_network_security_group.grupo2-neu-dr-WINDOWSSERVER-nsg.id
+}
+
+# WINDOWS SERVER PROD NSG ----------------#

@@ -58,6 +58,20 @@ default = ["10.1.1.0/24"]
 }
 
 # Variáveis para apelidar as máquinas ----------
+
+variable "Grupo2-weu-prod-vm-ANSIBLE" {
+  type        = string
+  default     = "Grupo2-WEU-PROD-ANSIBLE"
+  description = "Group #2 Production Ansible Control node."
+}
+
+variable "Grupo2-neu-dr-vm-ANSIBLE" {
+  type        = string
+  default     = "Grupo2-NEU-DR-ANSIBLE"
+  description = "Group #2 Disaster recovery Ansible Control node."
+}
+# ------
+
 variable "Grupo2-weu-prod-vm-WEBSERVER" {
   type        = string
   default     = "Grupo2-WEU-PROD-WEBSERVER"
@@ -70,18 +84,29 @@ variable "Grupo2-neu-dr-vm-WEBSERVER" {
   description = "Group #2 Disaster recovery Web Server."
 }
 
-# -------
+# -----
 
-variable "Grupo2-weu-prod-vm-ansible" {
+variable "Grupo2-weu-prod-vm-WINDOWSSERVER" {
   type        = string
-  default     = "Grupo2-WEU-PROD-ANSIBLE"
-  description = "Group #2 Production Ansible Control node."
+  default     = "Grupo2-WEU-PROD-WINDOWSSERVER"
+  description = "Group #2 Production Windows Server."
 }
 
-variable "Grupo2-neu-dr-vm-ansible" {
+variable "Grupo2-neu-dr-vm-WINDOWSSERVER" {
   type        = string
-  default     = "Grupo2-NEU-DR-ASNBIBLE"
-  description = "Group #2 Disaster recovery Ansible Control node."
+  default     = "Grupo2-NEU-DR-WINDOWSSERVER"
+  description = "Group #2 Disaster recovery Windows Server."
 }
 
+# -----
+variable "Grupo2-weu-prod-vm-DATABASESERVER" {
+  type        = string
+  default     = "Grupo2-WEU-PROD-DATABASESERVER"
+  description = "Group #2 Production Database Server."
+}
 
+variable "Grupo2-neu-dr-vm-DATABASESERVER" {
+  type        = string
+  default     = "Grupo2-NEU-DR-DATABASESERVER"
+  description = "Group #2 Disaster recovery Database Server."
+}

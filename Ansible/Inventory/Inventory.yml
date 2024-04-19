@@ -17,7 +17,9 @@ all:
               ansible_host: xxx.xxx.xxx.xxx
             db_server_dr:
               ansible_host: xxx.xxx.xxx.xxx
-
+            ansible_control_node:
+              ansible_host: xxx.xxx.xxx.xxx
+              
     windows_servers:
       hosts:
         Win_server:

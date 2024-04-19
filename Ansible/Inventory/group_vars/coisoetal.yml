@@ -1,0 +1,12 @@
+# Variáveis para os servidores
+  
+  # Variaveis para servidor Web
+http_port:
+https_port: 
+app_environment: "EXEMPLO PRODUÇAO" 
+
+
+
+
+
+

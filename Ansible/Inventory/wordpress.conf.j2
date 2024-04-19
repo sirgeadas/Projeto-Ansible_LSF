@@ -1,1 +1,16 @@
 #configuracao do VirtualHost
+<VirtualHost *:80>
+    ServerName seu-dominio.com
+    ServerAlias www.seu-dominio.com
+
+    DocumentRoot /caminho/para/o/seu/projeto/wordpress
+
+    <Directory /caminho/para/o/seu/projeto/wordpress>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

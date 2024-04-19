@@ -1,20 +1,20 @@
 # Ansible Machines:
 
 Name: Grupo2-weu-prod-vm-ANSIBLE
-User: ansible
+User: controlnode
 SSH Key: ControlNodePROD
 
 Machine: Grupo2-neu-dr-vm-ANSIBLE
-User: ansible
+User: controlnode
 SSH Key: ControlNodeDR
 
 # Web Server Machines:
 
-Machine: Grupo2-weu-prod-vm-WEBSERVER
+Machine: webserver_prod
 User: ansible
 SSH Key: WebServerPROD
 
-Machine: Grupo2-neu-dr-vm-WEBSERVER
+Machine: webserver_dr
 User: ansible
 SSH Key: WebServerDR
 
@@ -32,10 +32,10 @@ Password: Formando2022
 
 # Database Server Machines:
 
-Machine: Grupo2-weu-prod-vm-DATABASESERVER
+Machine: dbserver_prod
 User: ansible
 SSH Keys: DatabaseServerPROD
 
-Machine: Grupo2-neu-dr-vm-DATABASESERVER
+Machine: dbserver_dr
 User: ansible
 SSH Keys: DatabaseServerDR

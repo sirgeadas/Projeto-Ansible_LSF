@@ -6,7 +6,7 @@ become: yes
 tasks:
   - name: criar grupo dev
     group: 
-      name: dev0
+      name: dev
       state: present
 
   - name: criar grupo dba

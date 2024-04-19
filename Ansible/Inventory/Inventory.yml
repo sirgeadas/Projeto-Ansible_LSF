@@ -1,6 +1,6 @@
 ungrouped:
   hosts:
-    linux_servers: #sistema operativo
+    linux_servers:
       hosts:
         web_server_prod:
           ansible_host: 10.0.2.10
@@ -14,13 +14,13 @@ ungrouped:
           ansible_host: 10.1.2.15
         ansible_dr:
           ansible_host: 10.1.1.111
-    windows_servers: #sistema operativo
+    windows_servers:
       hosts:
         Win_prod_server:
           ansible_host: 10.0.2.20
         win_dis_server:
           ansible_host: 10.1.2.20
-    Production: #ambiente
+    Production:
       hosts:
         web_server_prod:
           ansible_host: 10.0.2.10
@@ -28,7 +28,7 @@ ungrouped:
           ansible_host: 10.0.2.15
         ansible_prod:
           ansible_host: 10.0.1.111
-     Disaster: #ambiente
+     Disaster:
       hosts:
         web_server_dr:
           ansible_host: 10.1.2.10
@@ -36,7 +36,7 @@ ungrouped:
           ansible_host: 10.1.2.15
         ansible_dr:
           ansible_host: 10.1.1.111
-     Northeurope: #regiao
+     Northeurope:
        hosts:
         web_server_dr:
           ansible_host: 10.1.2.10
@@ -44,7 +44,7 @@ ungrouped:
           ansible_host: 10.1.2.15
         ansible_dr:
           ansible_host: 10.1.1.111
-     Westeurope: #regiao
+     Westeurope:
        hosts:
         web_server_prod:
           ansible_host: 10.0.2.10
@@ -52,19 +52,19 @@ ungrouped:
           ansible_host: 10.0.2.15
         ansible_prod:
           ansible_host: 10.0.1.111 
-     webservers: #tipodeservidor
+     webservers:
        hosts:
          web_server_prod:
            ansible_host: 10.0.2.10
          web_server_dr: 
            ansible_host: 10.1.2.10
-     dbservers: #tipodeservidor
+     dbservers:
        hosts:
          db_server_prod:
            ansible_host: 10.0.2.15
          db_server_dr:
            ansible_host: 10.1.2.15
-     control-node-servers: #tipodeservidor
+     control-node-servers:
        hosts:
          ansible_prod:
            ansible_host: 10.0.1.111

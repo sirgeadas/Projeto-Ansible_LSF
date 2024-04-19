@@ -32,8 +32,15 @@ variable "Grupo2-weu-prod-vnet"{
 
 variable "Grupo2-weu-prod-subnet"{
 type = list(string)
-default = ["10.0.0.0/24"]
+default = ["10.0.2.0/24"]
 }
+
+variable "Grupo2-weu-prod-ansible-subnet"{
+type = list(string)
+default = ["10.0.1.0/24"]
+}
+
+# --------------
 
 variable "Grupo2-neu-dr-vnet"{
     type = list(string)
@@ -42,18 +49,39 @@ variable "Grupo2-neu-dr-vnet"{
 
 variable "Grupo2-neu-dr-subnet"{
 type = list(string)
-default = ["10.1.0.0/24"]
+default = ["10.1.2.0/24"]
+}
+
+variable "Grupo2-neu-dr-ansible-subnet"{
+type = list(string)
+default = ["10.1.1.0/24"]
 }
 
 # Variáveis para apelidar as máquinas ----------
-variable "Grupo2-weu-prod-vm-apache" {
+variable "Grupo2-weu-prod-vm-WEBSERVER" {
   type        = string
-  default     = "Grupo2-WEU-PROD-APACHE"
-  description = "Group #2 Production VM name."
+  default     = "Grupo2-WEU-PROD-WEBSERVER"
+  description = "Group #2 Production Web Server."
 }
 
-variable "Grupo2-neu-dr-vm-apache" {
+variable "Grupo2-neu-dr-vm-WEBSERVER" {
   type        = string
-  default     = "Grupo2-NEU-DR-APACHE"
-  description = "Group #2 Disaster recovery VM name."
+  default     = "Grupo2-NEU-DR-WEBSERVER"
+  description = "Group #2 Disaster recovery Web Server."
 }
+
+# -------
+
+variable "Grupo2-weu-prod-vm-ansible" {
+  type        = string
+  default     = "Grupo2-WEU-PROD-ANSIBLE"
+  description = "Group #2 Production Ansible Control node."
+}
+
+variable "Grupo2-neu-dr-vm-ansible" {
+  type        = string
+  default     = "Grupo2-NEU-DR-ASNBIBLE"
+  description = "Group #2 Disaster recovery Ansible Control node."
+}
+
+

@@ -52,19 +52,19 @@ ungrouped:
           ansible_host: 10.0.2.15
         ansible_prod:
           ansible_host: 10.0.1.111 
-     webservers: #tipodeservidor
+     webservers: #tipo de servidor
        hosts:
          web_server_prod:
            ansible_host: 10.0.2.10
          web_server_dr: 
            ansible_host: 10.1.2.10
-     dbservers: #tipodeservidor
+     dbservers: #tipo de servidor
        hosts:
          db_server_prod:
            ansible_host: 10.0.2.15
          db_server_dr:
            ansible_host: 10.1.2.15
-     control-node-servers: #tipodeservidor
+     control-node-servers: #tipo de servidor
        hosts:
          ansible_prod:
            ansible_host: 10.0.1.111

@@ -1,0 +1,70 @@
+---
+- name: Configuração do Servidor Web com Wordpress
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: Instalar Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Instalar PHP e módulos necessários
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - php
+        - php-mysql
+        - php-gd
+        - php-xml
+        - php-mbstring
+
+    - name: Configurar VirtualHost para o Wordpress
+      template:
+        src: wordpress.conf.j2
+        dest: /etc/httpd/conf.d/wordpress.conf
+
+    - name: Reiniciar o serviço Apache
+      service:
+        name: httpd
+        state: restarted
+
+- name: Instalar Wordpress
+  hosts: wordpress_instance
+  become: yes
+
+  tasks:
+    - name: Instalar MySQL Client
+      yum:
+        name: mysql
+        state: present
+
+    - name: Transferir arquivo de configuração do Wordpress
+      copy:
+        src: wp-config.php
+        dest: /var/www/html/wp-config.php
+
+- name: Criar Instância do Blog em Wordpress
+  hosts: wordpress_instance
+  become: yes
+
+  tasks:
+    - name: Download do pacote do Wordpress
+      get_url:
+        url: https://wordpress.org/latest.tar.gz
+        dest: /tmp/wordpress.tar.gz
+
+    - name: Extrair o pacote do Wordpress
+      unarchive:
+        src: /tmp/wordpress.tar.gz
+        dest: /var/www/html
+        remote_src: yes
+      notify:
+        - Restart Apache
+
+  handlers:
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted

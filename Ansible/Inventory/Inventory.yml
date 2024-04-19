@@ -24,6 +24,6 @@ all:
       hosts:
         Win_server:
           ansible_host: xxx.xxx.xxx.xxx
-
+          ansible_host: xxx.xxx.xxx.xxx
 # SÓ FALTAM AS REGIÕES 
 

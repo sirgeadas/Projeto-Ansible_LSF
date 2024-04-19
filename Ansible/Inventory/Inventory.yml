@@ -21,8 +21,9 @@ all:
               
     windows_servers:
       hosts:
-        Win_server:
-          ansible_host: xxx.xxx.xxx.xxx
-          ansible_host: xxx.xxx.xxx.xxx
+        Win_prod_server:
+          ansible_host: 10.0.2.20
+        win_dis_server:
+          ansible_host: 10.1.2.20
 # SÓ FALTAM AS REGIÕES 
 

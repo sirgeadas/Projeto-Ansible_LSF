@@ -566,3 +566,25 @@ resource "azurerm_network_interface_security_group_association" "WindowsServerDR
 }
 
 # WINDOWS SERVER PROD NSG ----------------#
+
+resource "azurerm_network_security_group" "grupo2-weu-prod-WINDOWSSERVER-nsg" {
+  name                = "Grupo2-WEU-PROD-WINDOWSSERVER-NSG"
+  location            = var.Prod
+  resource_group_name = var.Default_RG_Prod
+  security_rule {
+    name                       = "RDP"
+    priority                   = 1000
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_interface_security_group_association" "WindowsServerPROD-NIC-NSG" {
+  network_interface_id      = azurerm_network_interface.WINDOWS-PROD-NIC.id
+  network_security_group_id = azurerm_network_security_group.grupo2-weu-prod-WINDOWSSERVER-nsg.id
+}

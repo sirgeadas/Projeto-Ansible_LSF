@@ -1,29 +1,73 @@
-all:
-  children:
-    linux_servers:
-      children:
-        Production:
-          hosts:
-            web_server:
-              ansible_host: 10.0.2.10
-            db_server:
-              ansible_host: 10.0.2.15
-            ansible_control_node:
-              ansible_host: 10.0.1.111
-        Disaster:
-          hosts:
-            web_server_dr:
-              ansible_host: 10.1.2.10
-            db_server_dr:
-              ansible_host: 10.1.2.15
-            ansible_control_node:
-              ansible_host: 10.1.1.111
-              
-    windows_servers:
+ungrouped:
+  hosts:
+    linux_servers: #sistema operativo
+      hosts:
+        web_server_prod:
+          ansible_host: 10.0.2.10
+        db_server_prod:
+          ansible_host: 10.0.2.15
+        ansible_prod:
+          ansible_host: 10.0.1.111
+        web_server_dr:
+          ansible_host: 10.1.2.10
+        db_server_dr:
+          ansible_host: 10.1.2.15
+        ansible_dr:
+          ansible_host: 10.1.1.111
+    windows_servers: #sistema operativo
       hosts:
         Win_prod_server:
           ansible_host: 10.0.2.20
         win_dis_server:
           ansible_host: 10.1.2.20
-# SÓ FALTAM AS REGIÕES 
-
+    Production: #ambiente
+      hosts:
+        web_server_prod:
+          ansible_host: 10.0.2.10
+        db_server_prod:
+          ansible_host: 10.0.2.15
+        ansible_prod:
+          ansible_host: 10.0.1.111
+     Disaster: #ambiente
+      hosts:
+        web_server_dr:
+          ansible_host: 10.1.2.10
+        db_server_dr:
+          ansible_host: 10.1.2.15
+        ansible_dr:
+          ansible_host: 10.1.1.111
+     Northeurope: #regiao
+       hosts:
+        web_server_dr:
+          ansible_host: 10.1.2.10
+        db_server_dr:
+          ansible_host: 10.1.2.15
+        ansible_dr:
+          ansible_host: 10.1.1.111
+     Westeurope: #regiao
+       hosts:
+        web_server_prod:
+          ansible_host: 10.0.2.10
+        db_server_prod:
+          ansible_host: 10.0.2.15
+        ansible_prod:
+          ansible_host: 10.0.1.111 
+     webservers: #tipodeservidor
+       hosts:
+         web_server_prod:
+           ansible_host: 10.0.2.10
+         web_server_dr: 
+           ansible_host: 10.1.2.10
+     dbservers: #tipodeservidor
+       hosts:
+         db_server_prod:
+           ansible_host: 10.0.2.15
+         db_server_dr:
+           ansible_host: 10.1.2.15
+     control-node-servers: #tipodeservidor
+       hosts:
+         ansible_prod:
+           ansible_host: 10.0.1.111
+         ansible_dr:  
+           ansible_host: 10.1.1.111                 
+   

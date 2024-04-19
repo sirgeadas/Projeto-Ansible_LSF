@@ -1,0 +1,18 @@
+variable "Grupo2-weu-prod-vm-ANSIBLE" {
+
+variable "Grupo2-neu-dr-vm-ANSIBLE" {
+
+
+variable "Grupo2-weu-prod-vm-WEBSERVER" {
+
+
+variable "Grupo2-neu-dr-vm-WEBSERVER" {
+
+
+variable "Grupo2-weu-prod-vm-WINDOWSSERVER" {
+
+variable "Grupo2-neu-dr-vm-WINDOWSSERVER" {
+
+variable "Grupo2-weu-prod-vm-DATABASESERVER" {
+
+variable "Grupo2-neu-dr-vm-DATABASESERVER" {

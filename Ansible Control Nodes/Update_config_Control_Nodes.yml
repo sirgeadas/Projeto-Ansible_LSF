@@ -1,0 +1,22 @@
+---
+- hosts: ansible_servers
+  become: yes
+  tasks:
+    - name: Update and upgrade all packages
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install required packages
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - git
+        - ansible
+
+    - name: Clone GitHub repository
+      git:
+        repo: 'git@github.com:sirgeadas/Projeto-Ansible_LSF.git'
+        dest: ~/Grupo2
+

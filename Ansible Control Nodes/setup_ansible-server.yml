@@ -1,0 +1,61 @@
+---
+- name: Setup SSH Key and Git Repository
+  hosts: ansible_servers
+  gather_facts: no
+  become: yes
+
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"  # Disable strict host key checking
+    ansible_ssh_private_key_file: "~/.ssh/{{ GH_key_name }}"
+    vault_email_address: !vault |
+        #  $ANSIBLE_VAULT;1.1;AES256
+        #  66313566373036353566353363326331623130393530383238316336396265393933363437326564
+        #  3864363161616538633761623165623830353332326237320a643132666264373038353737663836
+        #  30643166383234383037306332363165626534656638663136616238323531633865393563373631
+        #  3831663338633364310a636365346238383231613337313630623964313365383737326630653263
+        #  36666563363161323535656535376164666234313330306230613637393631333761
+    GH_key_name: "{{ 'AnsibleGH_Prod' if 'ansible_prod' in group_names else 'AnsibleGH_DR' }}"
+
+  tasks:
+    - name: Update and upgrade repos
+      apt:
+        update_cache: yes
+        upgrade: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: Install ansible
+      package:
+        name: ansible
+        state: present
+
+    - name: Generate SSH key
+      shell: ssh-keygen -t ed25519 -C "{{ vault_email_address }}" -f ~/.ssh/{{ GH_key_name }} -N ""
+      args:
+        creates: "~/.ssh/{{ GH_key_name }}"
+      register: ssh_keygen_output
+
+    - name: Print SSH public key
+      debug:
+        var: ssh_keygen_output.stdout
+
+    - name: Start SSH agent
+      shell: eval "$(ssh-agent -s)"
+
+    - name: Add SSH key to SSH agent
+      shell: ssh-add ~/.ssh/{{ GH_key_name }}
+
+    - name: Create SSH config file
+      blockinfile:
+        path: ~/.ssh/config
+        block: |
+          Host github.com
+            IdentityFile ~/.ssh/{{ GH_key_name }}
+            IdentitiesOnly yes
+
+    - name: Create Grupo2 folder and clone repository
+      file:
+        path: ~/Grupo2
+        state: directory
+      git:
+        repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
+        dest: ~/Grupo2

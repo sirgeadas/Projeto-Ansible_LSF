@@ -1,0 +1,6 @@
+ansible_servers: 
+  hosts:
+   ansible_prod:
+      ansible_host: 20.126.141.214
+   ansible_dr: 
+      ansible_host: 23.102.24.139

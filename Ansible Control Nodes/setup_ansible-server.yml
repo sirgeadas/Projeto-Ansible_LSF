@@ -38,16 +38,11 @@
       command: cat ~/.ssh/{{ GH_key_name }}.pub
       register: ssh_pub_key_output
 
-    - name: Display SSH public key
-      debug:
-        var: ssh_pub_key_output.stdout
-
     - name: Start SSH agent and add SSH key
       #become: yes
       shell: |
         eval $(ssh-agent)
         ssh-add ~/.ssh/{{ GH_key_name }}
-
 
     - name: Create the config file
       file:
@@ -74,8 +69,6 @@
         path: "~/Grupo2"
         state: directory
 
-    - name: Clone repository
-      git:
-        repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
-        dest: ~/Grupo2
-        update: yes
+    - name: Display SSH public key
+      debug:
+        var: ssh_pub_key_output.stdout

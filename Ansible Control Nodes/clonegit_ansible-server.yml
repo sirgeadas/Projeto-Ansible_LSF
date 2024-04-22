@@ -1,0 +1,11 @@
+---
+- name: Clone The Project Ansible Repository
+  hosts: ansible_servers
+  gather_facts: no
+ 
+  tasks:
+    - name: Clone repository
+      git:
+        repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
+        dest: ~/Grupo2
+        update: yes

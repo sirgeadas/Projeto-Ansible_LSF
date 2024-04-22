@@ -24,6 +24,8 @@
         upgrade: yes
       when: ansible_os_family == 'Debian'
 
+
+
     - name: Install ansible
       package:
         name: ansible

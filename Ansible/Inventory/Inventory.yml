@@ -1,54 +1,46 @@
-linux_servers: 
-  hosts:
-    web_server_prod:
-      ansible_host: 10.0.2.10
-    db_server_prod:
-      ansible_host: 10.0.2.15
-    web_server_dr:
-      ansible_host: 10.1.2.10
-    db_server_dr:
-      ansible_host: 10.1.2.15
-windows_servers: 
-  hosts:
-    Win_prod_server:
-      ansible_host: 10.0.2.20
-    win_dis_server:
-      ansible_host: 10.1.2.20
-Production: 
-  hosts:
-    web_server_prod:
-      ansible_host: 10.0.2.10
-    db_server_prod:
-      ansible_host: 10.0.2.15
-    ansible_prod:
-      ansible_host: 10.0.1.111
-Disaster:
-  hosts:
-    web_server_dr:
-      ansible_host: 10.1.2.10
-    db_server_dr:
-      ansible_host: 10.1.2.15
-Northeurope:
-  hosts:
-  web_server_dr:
-    ansible_host: 10.1.2.10
-  db_server_dr:
-    ansible_host: 10.1.2.15
-Westeurope:
-  hosts:
-  web_server_prod:
-    ansible_host: 10.0.2.10
-  db_server_prod:
-    ansible_host: 10.0.2.15 
-      webservers: 
-    hosts:
-      web_server_prod:
-        ansible_host: 10.0.2.10
-      web_server_dr: 
-        ansible_host: 10.1.2.10
-  dbservers:
-    hosts:
-      db_server_prod:
-        ansible_host: 10.0.2.15
-      db_server_dr:
-        ansible_host: 10.1.2.15
+all:
+  children:
+    linux_servers: 
+      hosts:
+        web_server_prod:
+        db_server_prod:
+        web_server_dr:
+        db_server_dr:
+    windows_servers: 
+      hosts:
+        Win_prod_server:
+        win_dis_server:
+    Production: 
+      hosts:
+        web_server_prod:
+        db_server_prod:
+        ansible_prod:
+    Disaster:
+      hosts:
+        web_server_dr:
+        db_server_dr:
+    Northeurope:
+      hosts:
+        web_server_dr:
+        db_server_dr:
+    Westeurope:
+      hosts:
+        web_server_prod:
+        db_server_prod:
+    webservers: 
+      hosts:
+        web_server_prod:
+        web_server_dr:
+    dbservers:
+      hosts:
+        db_server_prod:
+        db_server_dr:
+  vars:
+    ansible_host:
+      web_server_prod: 10.0.2.10
+      db_server_prod: 10.0.2.15
+      web_server_dr: 10.1.2.10
+      db_server_dr: 10.1.2.15
+      Win_prod_server: 10.0.2.20
+      win_dis_server: 10.1.2.20
+      ansible_prod: 10.0.1.111

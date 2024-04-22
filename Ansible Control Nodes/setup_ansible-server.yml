@@ -2,23 +2,23 @@
 - name: Setup SSH Key and Git Repository
   hosts: ansible_servers
   gather_facts: yes
-  become: yes
 
   vars:
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"  # Disable strict host key checking
     ansible_ssh_private_key_file: "~/.ssh/{{ GH_key_name }}"
     vault_email_address: !vault |
-              $ANSIBLE_VAULT;1.1;AES256
-              30646565653764333437623130303538323462303736343462303737303637653464336238383664
-              3463303436643434303937653836316638613032623262640a343866396535363462653232343632
-              39383839393735363434656663306135313137346461336535653133303861366135346439396638
-              3436646234313762380a386464333831623232393136333564306139366364633031316562643933
-              32636232363862396439383361346663663832613134323032666534303634643238
+            $ANSIBLE_VAULT;1.1;AES256
+            63333436376138326264376230633131636335356436653232626266383937303336346339363837
+            3230643638303434666531313665316438333966323637370a363263643566343638656565356162
+            35626436666339663132333166623135316537666436333335336431373565616266653065323061
+            3966313666633563640a306565313337616530633936633631656431656339613332313031343461
+            35633166653361313932633931616331323530613439626331373333326332353965
 
     GH_key_name: "{{ 'AnsibleGH_Prod' if 'ansible_prod' in group_names else 'AnsibleGH_DR' }}"
 
   tasks:
     - name: Update and upgrade repos
+      become: yes
       apt:
         update_cache: yes
         upgrade: yes
@@ -33,17 +33,27 @@
       shell: ssh-keygen -t ed25519 -C "{{ vault_email_address }}" -f ~/.ssh/{{ GH_key_name }} -N ""
       args:
         creates: "~/.ssh/{{ GH_key_name }}"
-      register: ssh_keygen_output
 
     - name: Print SSH public key
+      command: cat ~/.ssh/{{ GH_key_name }}.pub
+      register: ssh_pub_key_output
+
+    - name: Display SSH public key
       debug:
-        var: ssh_keygen_output.stdout
+        var: ssh_pub_key_output.stdout
 
-    - name: Start SSH agent
-      shell: eval "$(ssh-agent -s)"
+    - name: Start SSH agent and add SSH key
+      #become: yes
+      shell: |
+        eval $(ssh-agent)
+        ssh-add ~/.ssh/{{ GH_key_name }}
 
-    - name: Add SSH key to SSH agent
-      shell: ssh-add ~/.ssh/{{ GH_key_name }}
+
+    - name: Create the config file
+      file:
+        path: ~/.ssh/config
+        state: touch
+        mode: '0660'
 
     - name: Create SSH config file
       blockinfile:
@@ -53,10 +63,19 @@
             IdentityFile ~/.ssh/{{ GH_key_name }}
             IdentitiesOnly yes
 
- #   - name: Create Grupo2 folder and clone repository
- #     file:
- #       path: "~/Grupo2"
- #       state: directory
- #     git:
- #       repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
- #       dest: ~/Grupo2
+    - name: Add GitHub to known hosts
+      known_hosts:
+        path: ~/.ssh/known_hosts
+        name: github.com
+        key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
+
+    - name: Create Grupo2 folder
+      file:
+        path: "~/Grupo2"
+        state: directory
+
+    - name: Clone repository
+      git:
+        repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
+        dest: ~/Grupo2
+        update: yes

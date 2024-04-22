@@ -1,7 +1,7 @@
 ---
 - name: Setup SSH Key and Git Repository
   hosts: ansible_servers
-  gather_facts: no
+  gather_facts: yes
   become: yes
 
   vars:
@@ -23,8 +23,6 @@
         update_cache: yes
         upgrade: yes
       when: ansible_os_family == 'Debian'
-
-
 
     - name: Install ansible
       package:
@@ -55,10 +53,10 @@
             IdentityFile ~/.ssh/{{ GH_key_name }}
             IdentitiesOnly yes
 
-    - name: Create Grupo2 folder and clone repository
-      file:
-        path: ~/Grupo2
-        state: directory
-      git:
-        repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
-        dest: ~/Grupo2
+ #   - name: Create Grupo2 folder and clone repository
+ #     file:
+ #       path: "~/Grupo2"
+ #       state: directory
+ #     git:
+ #       repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
+ #       dest: ~/Grupo2

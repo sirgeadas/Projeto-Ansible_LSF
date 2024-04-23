@@ -264,7 +264,6 @@ resource "azurerm_network_interface" "WINDOWS-PROD-NIC" {
     public_ip_address_id         = azurerm_public_ip.grupo2-weu-prod-windows-pip.id
   }
 }
-
 resource "azurerm_virtual_machine" "WINDOWS-PROD" {
   name                  = var.Grupo2-weu-prod-vm-WINDOWSSERVER
   location              = var.Prod
@@ -294,7 +293,7 @@ resource "azurerm_virtual_machine" "WINDOWS-PROD" {
     computer_name  = "WINDOWS-PROD"
     admin_username = "WinPROD"
     admin_password = var.password_Windows-PROD
-
+  }
   os_profile_windows_config {
     provision_vm_agent = true
   }

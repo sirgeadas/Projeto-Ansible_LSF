@@ -269,7 +269,7 @@ resource "azurerm_virtual_machine" "WINDOWS-PROD" {
   location              = var.Prod
   resource_group_name   = var.Default_RG_Prod
   network_interface_ids = [azurerm_network_interface.WINDOWS-PROD-NIC.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s"
 
   storage_os_disk {
     name              = "WINDOWS-PROD-Disk"
@@ -515,7 +515,7 @@ resource "azurerm_virtual_machine" "WINDOWS-DR" {
   location              = var.Disrec
   resource_group_name   = var.Default_RG_Disrec
   network_interface_ids = [azurerm_network_interface.WINDOWS-DR-NIC.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s"
 
   storage_os_disk {
     name              = "WINDOWS-DR-Disk"

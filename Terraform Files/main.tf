@@ -568,7 +568,21 @@ resource "azurerm_network_security_group" "grupo2-neu-dr-WINDOWSSERVER-nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+    security_rule {
+    name                       = "WinRM"
+    priority                   = 999
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "5985"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
 }
+
+
 resource "azurerm_network_interface_security_group_association" "WindowsServerDR-NIC-NSG" {
   network_interface_id      = azurerm_network_interface.WINDOWS-DR-NIC.id
   network_security_group_id = azurerm_network_security_group.grupo2-neu-dr-WINDOWSSERVER-nsg.id
@@ -588,6 +602,18 @@ resource "azurerm_network_security_group" "grupo2-weu-prod-WINDOWSSERVER-nsg" {
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "WinRM"
+    priority                   = 999
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "5985"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }

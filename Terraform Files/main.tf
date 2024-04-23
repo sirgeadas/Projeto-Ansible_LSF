@@ -286,8 +286,8 @@ resource "azurerm_virtual_machine" "WINDOWS-PROD" {
   }
 
   os_profile {
-    computer_name  = "hostname"
-    admin_username = "WinDR"
+    computer_name  = "WINDOWS-PROD"
+    admin_username = "WinPROD"
     admin_password = "Formando2022"
   }
 
@@ -484,7 +484,7 @@ resource "azurerm_public_ip" "grupo2-neu-dr-windows-pip" {
   name                = "Grupo2-NEU-DR-WINDOWS-PIP"
   location            = var.Disrec
   resource_group_name = var.Default_RG_Disrec
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "WINDOWS-DR-NIC" {
@@ -528,7 +528,7 @@ resource "azurerm_virtual_machine" "WINDOWS-DR" {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = "WINDOWS-DR"
     admin_username = "WinDR"
     admin_password = "Formando2022"
   }

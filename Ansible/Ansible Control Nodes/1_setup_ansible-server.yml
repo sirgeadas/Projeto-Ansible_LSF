@@ -1,5 +1,5 @@
 ---
-- name: Setup SSH Key and Git Repository
+- name: Update the Server, Setup SSH Key and Git Repository, and change the permissions of the Host keys
   hosts: ansible_servers
   gather_facts: yes
 

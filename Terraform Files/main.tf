@@ -104,8 +104,8 @@ storage_os_disk {
   disk_size_gb      = 30
 }
 
-  delete_os_disk_on_termination    = false
-  delete_data_disks_on_termination = false
+  delete_os_disk_on_termination    = true#false
+  delete_data_disks_on_termination = true#false
 
   storage_image_reference {
     publisher = "Canonical"
@@ -116,13 +116,13 @@ storage_os_disk {
 
   os_profile {
     computer_name  = "hostname"
-    admin_username = "controlnode"
+    admin_username = "controlnodeprod"
   }
 
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      path     = "/home/controlnode/.ssh/authorized_keys"
+      path     = "/home/controlnodeprod/.ssh/authorized_keys"
       key_data = file("~/.ssh/ControlNodePROD.pub")
     }
   }
@@ -357,13 +357,13 @@ storage_os_disk {
 
   os_profile {
     computer_name  = "hostname"
-    admin_username = "controlnode"
+    admin_username = "controlnodedr"
   }
 
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      path     = "/home/controlnode/.ssh/authorized_keys"
+      path     = "/home/controlnodedr/.ssh/authorized_keys"
       key_data = file("~/.ssh/ControlNodeDR.pub")
     }
   }

@@ -7,6 +7,7 @@ WebServerPROD
 DatabaseServerPROD
 WebServerDR
 DatabaseServerDR
+
 # Executar estes passos na máquina onde está instalado o Terraform:
 
 1. Navegar para a pasta 'Terraform Files'
@@ -23,8 +24,12 @@ set TF_VAR_password_Windows-DR="SUBSTITUIR POR PASSWORD AQUI"
 2. ssh -i ~/.ssh/ControlnodePROD controlnodeprod@IP_PUBLICO_DA_MAQUINA.
 2. ssh -i ~/.ssh/ControlnodeDR controlnodedr@IP_PUBLICO_DA_MAQUINA.
 
-scp -i .\.ssh\ControlNodePROD  "C:\Users\formando\Documents\M�dulo Automa��o\Projeto-Ansible_LSF-SSH_Keys\DatabaseServerPROD" controlnode@20.126.141.214:/home/controlnode/.ssh
-scp -i .\.ssh\ControlNodePROD  "C:\Users\formando\Documents\M�dulo Automa��o\Projeto-Ansible_LSF-SSH_Keys\DatabaseServerPROD" controlnode@20.126.141.214:/home/controlnode/.ssh
+scp -i ~/.ssh/ControlNodePROD  ~/.ssh/DatabaseServerPROD controlnodeprod@IP_PUBLICO_DA_MAQUINA.:~/.ssh  
+scp -i ~/.ssh/ControlNodePROD  ~/.ssh/WebServerPROD controlnodeprod@IP_PUBLICO_DA_MAQUINA.:~/.ssh  
+
+scp -i ~/.ssh/ControlNodeDR  ~/.ssh/DatabaseServerDR controlnodedr@IP_PUBLICO_DA_MAQUINA.:~/.ssh  
+scp -i ~/.ssh/ControlNodeDr  ~/.ssh/WebServerDR controlnodedr@IP_PUBLICO_DA_MAQUINA.:~/.ssh  
+
 
 ###################################################3
 

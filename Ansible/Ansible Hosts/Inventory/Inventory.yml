@@ -3,13 +3,19 @@ all:
     linux_servers: 
       hosts:
         web_server_prod:
+          ansible_host: 10.0.2.10
         db_server_prod:
+          ansible_host: 10.0.2.15
         web_server_dr:
+          ansible_host: 10.1.2.10
         db_server_dr:
+          ansible_host: 10.1.2.15
     windows_servers: 
       hosts:
-        Win_prod_server:
+        win_prod_server:
+          ansible_host: 10.0.2.20
         win_dr_server:
+          ansible_host: 10.1.2.20
     Production: 
       hosts:
         web_server_prod:
@@ -35,7 +41,6 @@ all:
         web_server_prod:
         web_server_dr:
     dbservers:
-
       hosts:
         db_server_prod:
         db_server_dr:
@@ -43,13 +48,4 @@ all:
       hosts:
         win_prod_server:
         win_dr_server:
-
-  vars:
-    ansible_host:
-      web_server_prod: 10.0.2.10
-      db_server_prod: 10.0.2.15
-      win_prod_server: 10.0.2.20
-      web_server_dr: 10.1.2.10
-      db_server_dr: 10.1.2.15
-      win_dr_server: 10.1.2.20
 

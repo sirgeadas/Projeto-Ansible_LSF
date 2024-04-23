@@ -239,6 +239,11 @@ storage_os_disk {
 
 # Criação da máquina WINDOWS SERVER PROD ----------------#
 
+variable "password_Windows-PROD" {
+  description = "The password associated with the administrative account of the Windows Server PROD."
+  sensitive   = true
+}
+
 resource "azurerm_public_ip" "grupo2-weu-prod-windows-pip" {
   name                = "Grupo2-WEU-PROD-WINDOWS-PIP"
   location            = var.Prod
@@ -288,8 +293,7 @@ resource "azurerm_virtual_machine" "WINDOWS-PROD" {
   os_profile {
     computer_name  = "WINDOWS-PROD"
     admin_username = "WinPROD"
-    admin_password = "Formando2022"
-  }
+    admin_password = var.password_Windows-PROD
 
   os_profile_windows_config {
     provision_vm_agent = true
@@ -480,6 +484,11 @@ storage_os_disk {
 
 # Criação da máquina WINDOWS SERVER DR ----------------#
 
+variable "password_Windows-DR" {
+  description = "The password associated with the administrative account of the Windows Server DR."
+  sensitive   = true
+}
+
 resource "azurerm_public_ip" "grupo2-neu-dr-windows-pip" {
   name                = "Grupo2-NEU-DR-WINDOWS-PIP"
   location            = var.Disrec
@@ -530,7 +539,8 @@ resource "azurerm_virtual_machine" "WINDOWS-DR" {
   os_profile {
     computer_name  = "WINDOWS-DR"
     admin_username = "WinDR"
-    admin_password = "Formando2022"
+    admin_password =  var.password_Windows-DR
+
   }
 
   os_profile_windows_config {

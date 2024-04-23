@@ -41,14 +41,14 @@ all:
         db_server_dr:
     clients:
       hosts:
-        Win_prod_server:
+        win_prod_server:
         win_dr_server:
 
   vars:
     ansible_host:
       web_server_prod: 10.0.2.10
       db_server_prod: 10.0.2.15
-      Win_prod_server: 10.0.2.20
+      win_prod_server: 10.0.2.20
       web_server_dr: 10.1.2.10
       db_server_dr: 10.1.2.15
       win_dr_server: 10.1.2.20

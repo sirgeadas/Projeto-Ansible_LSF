@@ -9,38 +9,47 @@ all:
     windows_servers: 
       hosts:
         Win_prod_server:
-        win_dis_server:
+        win_dr_server:
     Production: 
       hosts:
         web_server_prod:
         db_server_prod:
-        ansible_prod:
+        win_prod_server:
     Disaster:
       hosts:
         web_server_dr:
         db_server_dr:
+        win_dr_server:
     Northeurope:
       hosts:
         web_server_dr:
         db_server_dr:
+        win_dr_server:
     Westeurope:
       hosts:
         web_server_prod:
         db_server_prod:
+        win_prod_server:
     webservers: 
       hosts:
         web_server_prod:
         web_server_dr:
     dbservers:
+
       hosts:
         db_server_prod:
         db_server_dr:
+    clients:
+      hosts:
+        Win_prod_server:
+        win_dr_server:
+
   vars:
     ansible_host:
       web_server_prod: 10.0.2.10
       db_server_prod: 10.0.2.15
+      Win_prod_server: 10.0.2.20
       web_server_dr: 10.1.2.10
       db_server_dr: 10.1.2.15
-      Win_prod_server: 10.0.2.20
-      win_dis_server: 10.1.2.20
-      ansible_prod: 10.0.1.111
+      win_dr_server: 10.1.2.20
+

@@ -7,5 +7,5 @@
     - name: Clone repository
       git:
         repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
-        dest: ~/Grupo2
+        dest: ~
         update: yes

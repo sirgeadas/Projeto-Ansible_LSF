@@ -1,6 +1,6 @@
 ---
 name: Gestao de utilizadores e grupos
-hosts: all
+hosts: linux_servers
 become: yes
 
 tasks:

@@ -1,11 +1,12 @@
 ---
 - name: Clone The Project Ansible Repository
   hosts: ansible_servers
-  gather_facts: no
+  gather_facts: yes
  
   tasks:
     - name: Clone repository
       git:
         repo: git@github.com:sirgeadas/Projeto-Ansible_LSF.git
-        dest: ~
+        dest: "{{ ansible_env.HOME }}/Github"
+        clone: yes
         update: yes

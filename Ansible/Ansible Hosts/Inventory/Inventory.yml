@@ -2,13 +2,13 @@ all:
   children:
     linux_servers: 
       hosts:
-        web_server_prod:
+        webserver_prod:
           ansible_host: 10.0.2.10
-        db_server_prod:
+        dbserver_prod:
           ansible_host: 10.0.2.15
-        web_server_dr:
+        webserver_dr:
           ansible_host: 10.1.2.10
-        db_server_dr:
+        dbserver_dr:
           ansible_host: 10.1.2.15
     windows_servers: 
       hosts:
@@ -18,32 +18,32 @@ all:
           ansible_host: 10.1.2.20
     Production: 
       hosts:
-        web_server_prod:
-        db_server_prod:
+        webserver_prod:
+        dbserver_prod:
         win_prod_server:
     Disaster:
       hosts:
-        web_server_dr:
-        db_server_dr:
+        webserver_dr:
+        dbserver_dr:
         win_dr_server:
     Northeurope:
       hosts:
-        web_server_dr:
-        db_server_dr:
+        webserver_dr:
+        dbserver_dr:
         win_dr_server:
     Westeurope:
       hosts:
-        web_server_prod:
-        db_server_prod:
+        webserver_prod:
+        dbserver_prod:
         win_prod_server:
     webservers: 
       hosts:
-        web_server_prod:
-        web_server_dr:
+        webserver_prod:
+        webserver_dr:
     dbservers:
       hosts:
-        db_server_prod:
-        db_server_dr:
+        dbserver_prod:
+        dbserver_dr:
     clients:
       hosts:
         win_prod_server:

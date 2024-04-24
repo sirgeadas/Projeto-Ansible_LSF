@@ -1,1 +1,2 @@
-ansible_user: WinPROD
+ansible_user: ansible
+ansible_key: 

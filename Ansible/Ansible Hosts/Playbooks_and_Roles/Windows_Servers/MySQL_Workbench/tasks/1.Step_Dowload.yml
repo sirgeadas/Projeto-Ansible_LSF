@@ -19,9 +19,3 @@
     Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile "C:\Temp\mysql-workbench.msi"
   args:
     executable: powershell.exe
-
-
-#- name: Download MySQL Workbench installer
-#  win_get_url:
-#    url: "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.26-winx64.msi"
-#    dest: C:\Temp\mysql-workbench.msi

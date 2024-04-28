@@ -1,21 +1,19 @@
 ---
 - name: Install .NET Framework 4.5.2
-  win_package:
+  ansible.windows.win_package:
     path: C:\Temp\net-framework-4.5.2.exe
     state: present
     arguments: /qb
 
 - name: Install Visual C++ Redistributable
-  win_package:
+  ansible.windows.win_package:
     path: C:\Temp\vc-redist.exe
     state: present
     arguments: /qb
 
 
-#- name: Download MySQL Workbench installer
-#  win_get_url:
-#    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
-#    dest: C:\Temp\mysql-workbench-installer.msi
-
-#- name: Instalar MySQL Workbench
-#  win_command: msiexec /i C:\temp\mysql-workbench-installer.msi /qb
+- name: Install MySQL Workbench
+  ansible.windows.win_package:
+    path: C:\Temp\mysql-workbench.msi
+    state: present
+    arguments: /qb

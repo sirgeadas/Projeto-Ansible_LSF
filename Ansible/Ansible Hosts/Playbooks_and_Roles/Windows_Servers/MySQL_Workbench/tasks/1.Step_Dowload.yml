@@ -11,7 +11,7 @@
 
 - name: Download Visual C++ Redistributable
   ansible.windows.win_get_url:
-    url: https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
+    url: https://aka.ms/highdpimfc2013x64enu
     dest: C:\Temp\vc-redist.exe
 
 - name: Check if MySQL Workbench installer exists

@@ -1,0 +1,17 @@
+---
+- name: Check and Install MySQL using Chocolatey
+  hosts: win_dr_server
+  become_method: winrm
+
+  tasks:
+    - name: Gather Chocolatey facts
+      ansible.builtin.win_chocolatey_facts:
+
+    - name: Check if MySQL is installed
+      ansible.builtin.debug:
+        var: ansible_facts['ansible_chocolatey']['packages']['mysql']
+
+    - name: Install MySQL if not installed
+      ansible.builtin.win_chocolatey:
+        name: mysql
+        state: present

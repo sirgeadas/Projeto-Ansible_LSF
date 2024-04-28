@@ -1,5 +1,5 @@
 ---
-- name: Install MySQL Workbench using the MySQL_Workbench Role
+- name: MySQL Workbench Role
   hosts: windows_servers
   gather_facts: true
   become_method: winrm

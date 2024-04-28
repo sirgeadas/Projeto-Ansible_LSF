@@ -1,7 +1,7 @@
 ---
 - name: Install Firefox and BGinfo
   hosts: windows_servers
-  gather_facts: false
+  gather_facts: true
 
   tasks:
     - name: Install Firefox
@@ -21,13 +21,13 @@
 
     - name: Copy BGinfo to Program Files
       win_copy:
-        src: C:\Temp\bginfo\bginfo.exe
-        dest: C:\Program Files\BGinfo\bginfo.exe
+        src: C:\Temp\bginfo\bginfo64.exe
+        dest: C:\Program Files\BGinfo\bginfo64.exe
 
     - name: Create BGinfo shortcut
       win_shortcut:
         src: C:\Program Files\BGinfo\bginfo.exe
-        dest: C:\Users\Public\Desktop\BGinfo.lnk
+        dest: "{{ ansible_env.USERPROFILE }}\Desktop\BGinfo64.lnk"
 
    # - name: Set BGinfo configuration
    #   win_command: 'C:\Program Files\BGinfo\bginfo.exe C:\Program Files\BGinfo\config.bgi /timer:0 /nolicprompt'

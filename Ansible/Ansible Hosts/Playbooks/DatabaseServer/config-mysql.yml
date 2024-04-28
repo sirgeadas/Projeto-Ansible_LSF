@@ -1,6 +1,6 @@
 ---
-- name: Configuração do Servidor MySQL
-  hosts: dbserver
+- name: Instalação e configuração do Servidor MySQL
+  hosts: dbservers
   become: yes
 
   tasks:

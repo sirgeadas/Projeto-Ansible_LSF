@@ -5,7 +5,7 @@
 
   tasks:
     - name: Gather Chocolatey facts
-      ansible.windows.win_chocolatey_facts:
+      community.windows.win_product_facts:
 
     - name: Check if MySQL Workbench is installed
       ansible.builtin.debug:

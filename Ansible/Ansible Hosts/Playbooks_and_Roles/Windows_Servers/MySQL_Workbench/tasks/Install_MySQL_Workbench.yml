@@ -1,8 +1,11 @@
 - name: Creating a temporary folder
-  win_file:
-    path: C:\Temp
-    state: directory
-  when: not ansible_check_mode and not ('C:\\Temp' | win_stat).exists
+  win_shell: |
+    if not exist C:\Temp (
+      mkdir C:\Temp
+    )
+  args:
+    executable: cmd
+  when: not ansible_check_mode
 
 - name: Download do MySQL Workbench installer
   win_uri:

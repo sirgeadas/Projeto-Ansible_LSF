@@ -3,12 +3,19 @@
 **Step 1:** Run powershell as administrator \
 Win+R -> powershell
 
-**Step 2:** Paste this and press ENTER: 
+**Step 2:** Copy this code: 
 
 ```bash
  netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow protocol=TCP localport=5985
 ````
 >  Replace MACHINE_NAME with your machine's name.
+
+**Step 3:** Paste it on your machine's powershell terminal:
+
+
+\
+\
+\
 
 **Optional:**  
 
@@ -19,6 +26,11 @@ netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow prot
 ````
 
 > Replace MACHINE_NAME with your machine's name.
+
+\
+\
+\
+\
 
 
 ##### Your Windows Server is now ready to accept ansible commands.

@@ -15,10 +15,10 @@
     dest: C:\Temp\vc-redist.exe
 
 
-#- name: Download MySQL Workbench installer
-#  win_get_url:
-#    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
-#    dest: C:\Temp\mysql-workbench-installer.msi
+- name: Download MySQL Workbench installer
+  win_get_url:
+    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
+    dest: C:\Temp\mysql-workbench-installer.msi
 
 #- name: Instalar MySQL Workbench
 #  win_command: msiexec /i C:\temp\mysql-workbench-installer.msi /qb

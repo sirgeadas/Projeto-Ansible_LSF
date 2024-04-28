@@ -4,7 +4,7 @@
   gather_facts: true
 
   roles:
-    - ../MySQL_Workbench
+    - MySQL_Workbench
 
   tasks:
     - include_tasks: tasks/Install_MySQL_Workbench.yml

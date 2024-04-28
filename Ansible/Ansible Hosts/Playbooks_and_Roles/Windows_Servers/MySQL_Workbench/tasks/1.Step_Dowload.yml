@@ -1,16 +1,4 @@
-#- name: Creating a temporary folder
-#  win_shell: |
-#    if not exist C:\Temp (
-#      mkdir C:\Temp
-#    )
-#  args:
-#    executable: cmd
-#  when: not ansible_check_mode
-- name: Creating an temporary folder
-  win_file:
-    path: C:\Temp
-    state: directory  
-
+---
 - name: Creating a temporary folder
   win_file:
     path: C:\Temp
@@ -25,6 +13,7 @@
   win_get_url:
     url: https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
     dest: C:\Temp\vc-redist.exe
+
 
 #- name: Download MySQL Workbench installer
 #  win_get_url:

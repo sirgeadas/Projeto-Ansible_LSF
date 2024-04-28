@@ -4,16 +4,6 @@
     path: C:\Temp
     state: directory
 
-- name: Download .NET Framework 4.5.2
-  ansible.windows.win_get_url:
-    url: https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
-    dest: C:\Temp\net-framework-4.5.2.exe
-
-- name: Download Visual C++ Redistributable
-  ansible.windows.win_get_url:
-    url: https://aka.ms/highdpimfc2013x64enu
-    dest: C:\Temp\vc-redist.exe
-
 - name: Check if MySQL Workbench installer exists
   win_shell: |
     $installerPath = "C:\Temp\mysql-workbench.msi"

@@ -1,6 +1,6 @@
 ---
 - name: Check and Install MySQL Workbench using Chocolatey
-  hosts: windows_servers
+  hosts: win_dr_server
   become_method: winrm
 
   tasks:

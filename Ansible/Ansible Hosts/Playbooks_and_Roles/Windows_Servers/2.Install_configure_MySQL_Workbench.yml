@@ -4,7 +4,7 @@
   gather_facts: true
   become_method: winrm
   vars_files:
-   vars/secrets.yml
+   MySQL_Workbench/vars/secrets.yml
 
   roles:
     - MySQL_Workbench

@@ -32,7 +32,7 @@
 
     - name: Create BGinfo shortcut
       win_shortcut:
-        src: C:\Program Files\BGinfo\bginfo.exe
+        src: C:\Program Files\BGinfo\Bginfo64.exe
         dest: "{{ ansible_env.USERPROFILE }}\\Desktop\\BGinfo64.lnk"
 
    # - name: Set BGinfo configuration

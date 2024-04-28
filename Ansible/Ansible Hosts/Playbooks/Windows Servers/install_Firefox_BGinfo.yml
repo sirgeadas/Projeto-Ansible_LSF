@@ -27,7 +27,7 @@
     - name: Create BGinfo shortcut
       win_shortcut:
         src: C:\Program Files\BGinfo\bginfo.exe
-        dest: "{{ ansible_env.USERPROFILE }}\Desktop\BGinfo64.lnk"
+        dest: "{{ ansible_env.USERPROFILE }}\\Desktop\\BGinfo64.lnk"
 
    # - name: Set BGinfo configuration
    #   win_command: 'C:\Program Files\BGinfo\bginfo.exe C:\Program Files\BGinfo\config.bgi /timer:0 /nolicprompt'

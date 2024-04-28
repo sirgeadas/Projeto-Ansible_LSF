@@ -1,0 +1,11 @@
+---
+- name: Install MySQL Workbench using the MySQL_Workbench Role
+  hosts: windows_servers
+  gather_facts: true
+
+  roles:
+    - ../MySQL_Workbench
+
+  tasks:
+    - include_tasks: tasks/Install_MySQL_Workbench.yml
+    #- include_tasks: tasks/Configure_MySQL_Workbench.yml

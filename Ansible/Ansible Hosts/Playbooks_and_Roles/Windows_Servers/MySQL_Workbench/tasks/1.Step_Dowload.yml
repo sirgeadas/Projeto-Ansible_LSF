@@ -14,8 +14,11 @@
     url: https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
     dest: C:\Temp\vc-redist.exe
 
-- name: Download MySQL Workbench installer
+- name: Check if MySQL Workbench installer exists
   win_shell: |
-    Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile "C:\Temp\mysql-workbench.msi"
+    $installerPath = "C:\Temp\mysql-workbench.msi"
+    if (-Not (Test-Path $installerPath)) {
+        Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile $installerPath
+    }
   args:
     executable: powershell.exe

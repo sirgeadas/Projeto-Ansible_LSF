@@ -4,27 +4,32 @@
   gather_facts: true
 
   tasks:
-    - name: Install Firefox
+    - name: Installing Firefox
       win_chocolatey:
         name: firefox
         state: present
 
-    - name: Download BGinfo
-      win_get_url:
-        url: https://download.sysinternals.com/files/BGInfo.zip
-        dest: C:\Temp\bginfo.zip
-
-    - name: Extract BGinfo
-      win_unzip:
-        src: C:\Temp\bginfo.zip
-        dest: C:\Temp\bginfo
-
-    - name: Create BGinfo directory
+    - name: Creating an temporary folder
       win_file:
         path: C:\Program Files\BGinfo
         state: directory  
 
-    - name: Copy BGinfo to Program Files
+    - name: Downloading BGinfo
+      win_get_url:
+        url: https://download.sysinternals.com/files/BGInfo.zip
+        dest: C:\Temp\bginfo.zip
+
+    - name: Extracting BGinfo
+      win_unzip:
+        src: C:\Temp\bginfo.zip
+        dest: C:\Temp\bginfo
+
+    - name: Creating BGinfo's folder 
+      win_file:
+        path: C:\Program Files\BGinfo
+        state: directory  
+
+    - name: Copying BGinfo to Program Files
       win_copy:
         src: C:\Temp\bginfo\Bginfo64.exe
         dest: C:\Program Files\BGinfo\Bginfo64.exe

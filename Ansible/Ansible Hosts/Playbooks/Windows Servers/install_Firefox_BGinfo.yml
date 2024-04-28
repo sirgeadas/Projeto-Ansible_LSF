@@ -21,8 +21,8 @@
 
     - name: Copy BGinfo to Program Files
       win_copy:
-        src: C:\Temp\bginfo\bginfo64.exe
-        dest: C:\Program Files\BGinfo\bginfo64.exe
+        src: C:\Temp\bginfo\Bginfo64.exe
+        dest: C:\Program Files\BGinfo\Bginfo64.exe
         remote_src: yes
 
     - name: Create BGinfo shortcut

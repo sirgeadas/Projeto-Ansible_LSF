@@ -8,7 +8,7 @@ Win+R -> powershell
 ```bash
  netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow protocol=TCP localport=5985
 ````
-[^]: Replace MACHINE_NAME with your machine's name.
+[^1]: Replace MACHINE_NAME with your machine's name.
 
 **Optional:**  
 
@@ -18,7 +18,7 @@ If you want the machine to accept ICMP requests run this command as Administrato
 netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow protocol=TCP localport=5985
 ````
 
-[^]: Replace MACHINE_NAME with your machine's name.
+[^2]: Replace MACHINE_NAME with your machine's name.
 
 
 ##### Your Windows Server is now ready to accept ansible commands.

@@ -19,11 +19,10 @@
         src: C:\Temp\bginfo.zip
         dest: C:\Temp\bginfo
 
-    - name: Copy BGinfo to Program Files
-      win_copy:
-        src: C:\Temp\bginfo\bginfo64.exe
-        dest: C:\Program Files\BGinfo\bginfo64.exe
-        remote_src: yes        
+    - name: Create BGinfo directory
+      win_file:
+        path: C:\Program Files\BGinfo
+        state: directory  
 
     - name: Copy BGinfo to Program Files
       win_copy:

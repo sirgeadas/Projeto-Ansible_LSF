@@ -1,9 +1,9 @@
 ---
-- name: Install .NET Framework 4.5.2
-  ansible.windows.win_package:
-    path: C:\Temp\net-framework-4.5.2.exe
-    state: present
-    arguments: /qb
+#- name: Install .NET Framework 4.5.2
+#  ansible.windows.win_package:
+#    path: C:\Temp\net-framework-4.5.2.exe
+#    state: present
+#    arguments: /qb
 
 - name: Install Visual C++ Redistributable
   ansible.windows.win_package:

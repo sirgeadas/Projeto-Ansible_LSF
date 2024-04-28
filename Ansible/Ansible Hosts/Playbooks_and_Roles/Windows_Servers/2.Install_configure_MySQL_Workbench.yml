@@ -7,5 +7,5 @@
     - MySQL_Workbench
 
   tasks:
-    - include_tasks: tasks/Install_MySQL_Workbench.yml
+    - include_tasks: MySQL_Workbench/tasks/Install_MySQL_Workbench.yml
     #- include_tasks: tasks/Configure_MySQL_Workbench.yml

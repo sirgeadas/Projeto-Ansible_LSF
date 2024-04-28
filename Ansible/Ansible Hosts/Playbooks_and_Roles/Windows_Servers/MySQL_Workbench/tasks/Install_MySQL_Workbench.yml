@@ -11,10 +11,25 @@
     path: C:\Temp
     state: directory  
 
-- name: Download MySQL Workbench installer
-  win_get_url:
-    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
-    dest: C:\Temp\mysql-workbench-installer.msi
+- name: Creating a temporary folder
+  win_file:
+    path: C:\Temp
+    state: directory
 
-- name: Instalar MySQL Workbench
-  win_command: msiexec /i C:\temp\mysql-workbench-installer.msi /qb
+- name: Download .NET Framework 4.5.2
+  win_get_url:
+    url: https://www.microsoft.com/en-US/download/details.aspx?id=42642
+    dest: C:\Temp\net-framework-4.5.2.exe
+
+- name: Download Visual C++ Redistributable
+  win_get_url:
+    url: https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
+    dest: C:\Temp\vc-redist.exe
+
+#- name: Download MySQL Workbench installer
+#  win_get_url:
+#    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
+#    dest: C:\Temp\mysql-workbench-installer.msi
+
+#- name: Instalar MySQL Workbench
+#  win_command: msiexec /i C:\temp\mysql-workbench-installer.msi /qb

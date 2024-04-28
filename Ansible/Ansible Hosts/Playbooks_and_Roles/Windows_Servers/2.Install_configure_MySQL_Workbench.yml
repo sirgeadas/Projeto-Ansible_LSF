@@ -8,5 +8,7 @@
     - MySQL_Workbench
 
   tasks:
-    - include_tasks: MySQL_Workbench/tasks/Install_MySQL_Workbench.yml
-    #- include_tasks: tasks/Configure_MySQL_Workbench.yml
+    - include_tasks: MySQL_Workbench/tasks/1.Step_Dowload.yml
+    #- include_tasks: MySQL_Workbench/tasks/2.Step_Install.yml
+    #- include_tasks: MySQL_Workbench/tasks/3.Step_Configure.yml
+    #- include_tasks: MySQL_Workbench/tasks/4.Step_CleanUp.yml

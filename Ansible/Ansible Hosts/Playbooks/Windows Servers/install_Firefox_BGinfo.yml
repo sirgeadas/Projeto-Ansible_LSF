@@ -11,7 +11,7 @@
 
     - name: Creating an temporary folder
       win_file:
-        path: C:\Program Files\BGinfo
+        path: C:\Temp
         state: directory  
 
     - name: Downloading BGinfo

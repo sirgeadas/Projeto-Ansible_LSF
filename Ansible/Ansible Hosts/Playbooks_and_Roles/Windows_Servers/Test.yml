@@ -1,17 +1,17 @@
 ---
-- name: Check and Install MySQL using Chocolatey
-  hosts: win_dr_server
+- name: Check and Install MySQL Workbench using Chocolatey
+  hosts: windows_servers
   become_method: winrm
 
   tasks:
     - name: Gather Chocolatey facts
-      ansible.builtin.win_chocolatey_facts:
+      ansible.windows.win_chocolatey_facts:
 
-    - name: Check if MySQL is installed
+    - name: Check if MySQL Workbench is installed
       ansible.builtin.debug:
-        var: ansible_facts['ansible_chocolatey']['packages']['mysql']
+        var: ansible_facts['ansible_chocolatey']['packages']['mysql.workbench']
 
-    - name: Install MySQL if not installed
-      ansible.builtin.win_chocolatey:
-        name: mysql
+    - name: Install MySQL Workbench if not installed
+      ansible.windows.win_chocolatey:
+        name: mysql.workbench
         state: present

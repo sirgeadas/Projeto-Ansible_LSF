@@ -17,5 +17,6 @@
 
 - name: Download MySQL Workbench installer
   win_get_url:
-    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
+    url: https://downloads.mysql.com/archives/get/p/8/file/mysql-workbench-community-8.0.34-winx64.msi
+    #url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi
     dest: C:\Temp\mysql-workbench-installer.msi

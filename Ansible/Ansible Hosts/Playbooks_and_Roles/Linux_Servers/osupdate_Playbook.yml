@@ -4,22 +4,21 @@
   become: yes
 
   tasks:
-    - name: Verificar se é um sistema Linux
-      block:
-        - name: Update para sistemas Linux
-          when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+    - name: Update para sistemas Linux
+        when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
           yum:
             name: '*'
             state: latest
           apt:
             upgrade: "dist"
-      rescue:
-        - name: Update para sistemas Windows
-          win_updates:
 
     - name: Run Windows Updates.
       include_role:
       name: osupdate
+
+      
+
+      
 
 
 

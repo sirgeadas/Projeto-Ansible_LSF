@@ -3,7 +3,7 @@
   win_shell: |
     $installerPath = "C:\\Temp\\dotnet-framework-4.0.exe"
     if (-Not (Test-Path $installerPath)) {
-        Invoke-WebRequest -Uri "https://dotnet.microsoft.com/download/dotnet-framework/net40" -OutFile $installerPath
+        Invoke-WebRequest -Uri "https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer" -OutFile $installerPath
     }
 
 - name: Install .NET Framework 4.0

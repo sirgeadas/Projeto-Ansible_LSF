@@ -1,6 +1,6 @@
 ---
 - name: Incluir variável para usuário, senha e nome do banco de dados
-  include_vars: vars.yml
+  include_vars: secrets.yml
 
 - name: Atualizar cache do repositório
   apt: 

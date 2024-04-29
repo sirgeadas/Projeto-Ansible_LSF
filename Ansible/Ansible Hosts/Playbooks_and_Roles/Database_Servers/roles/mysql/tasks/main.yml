@@ -42,7 +42,7 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: localhost
     login_user: root
-    login_password: ''
+    login_password: '{{root_password}}'
     state: present
 
 - name: Criando database
@@ -55,11 +55,11 @@
     collation: utf8mb4_bin
 
 - name: Criando usuário admin para acesso remoto
-  mysql_user: 
+  mysql_user:
     name: "{{admin_user}}"
     password: "{{admin_password}}"
     priv: 'Wordpress.*:ALL,GRANT'
-    host: localhost
+    host: '%'
     append_privs: true
     login_user: root
     login_password: "{{root_password}}"

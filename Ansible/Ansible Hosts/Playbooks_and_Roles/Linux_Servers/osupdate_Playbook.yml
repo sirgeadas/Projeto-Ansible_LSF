@@ -17,6 +17,9 @@
         - name: Update para sistemas Windows
           win_updates:
 
+    - name: Run Windows Updates.
+      include_role:
+      name: osupdate
 
 
 

@@ -7,10 +7,11 @@
     - name: Uninstall MySQL server
       hosts: your_mysql_host
       tasks:
-        - name: Remove MySQL package
-          package:
-            name: mysql-server
-            state: absent
+
+    - name: Remove MySQL package
+      package:
+        name: mysql-server
+        state: absent
 
     - name: Delete MySQL data directory
       file:

@@ -13,8 +13,8 @@
 
     tasks:
       - name: Install MySQL Workbench
-      win_chocolatey:
-        name: mysql.workbench
-        version: '8.0.36'
-        source: https://community.chocolatey.org/api/v2/
-        state: present    
+        win_chocolatey:
+          name: mysql.workbench
+          version: '8.0.36'
+          source: https://community.chocolatey.org/api/v2/
+          state: present    

@@ -9,12 +9,6 @@
         state: present
       become: yes
 
-    - name: Install Win32-OpenSSH
-      win_chocolatey:
-        name: openssh
-        state: present
-      become: yes
-
     - name: Install MySQL Workbench
       win_chocolatey:
         name: mysql.workbench

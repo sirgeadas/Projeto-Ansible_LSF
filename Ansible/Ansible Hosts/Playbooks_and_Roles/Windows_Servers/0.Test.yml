@@ -13,11 +13,12 @@
         name: dotnet4.5.2
         state: present
 
-    - name: Install Visual C++ Redistributable 2015-2022
+    - name: Install Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
       win_chocolatey:
-        name: vcredist2015-2022
+        name: vcredist140
+        version: '14.38.33135'
+        source: https://community.chocolatey.org/api/v2/
         state: present
-
 
     - name: Install MySQL Workbench
       win_chocolatey:

@@ -1,10 +1,21 @@
 ---
-- name: Creating a temporary folder
-  ansible.windows.win_file:
+- name: Verify C:\Temp folder existence
+  ansible.builtin.stat:
+    path: C:\Temp
+  register: temp_folder
+
+- name: Create C:\Temp folder if it doesn't exist
+  ansible.builtin.file:
     path: C:\Temp
     state: directory
+  when: not temp_folder.stat.exists
 
-- name: Check if MySQL Workbench installer exists
+- name: Verify file existence
+  ansible.builtin.stat:
+    path: C:\Temp\mysql-workbench.msi
+  register: workbench_installer
+  
+- name: Download installer if it doesn't exist
   win_shell: |
     $installerPath = "C:\Temp\mysql-workbench.msi"
     if (-Not (Test-Path $installerPath)) {
@@ -12,5 +23,3 @@
     }
   args:
     executable: powershell.exe
-
-

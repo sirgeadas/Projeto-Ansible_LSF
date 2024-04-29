@@ -1,17 +1,17 @@
 ---
 - name: Verify C:\Temp folder existence
-  ansible.builtin.stat:
+  ansible.windows.win_stat:
     path: C:\Temp
   register: temp_folder
 
 - name: Create C:\Temp folder if it doesn't exist
-  ansible.builtin.file:
+  ansible.windows.win_file:
     path: C:\Temp
     state: directory
   when: not temp_folder.stat.exists
 
 - name: Verify file existence
-  ansible.builtin.stat:
+  ansible.windows.win_stat:
     path: C:\Temp\mysql-workbench.msi
   register: workbench_installer
 

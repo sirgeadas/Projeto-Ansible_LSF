@@ -8,7 +8,20 @@
         name: chocolatey
         state: present
 
+    - name: Install .NET Framework 4.5.2
+      win_chocolatey:
+        name: dotnet4.5.2
+        state: present
+
+    - name: Install Visual C++ Redistributable 2015-2022
+      win_chocolatey:
+        name: vcredist2015-2022
+        state: present
+
+
     - name: Install MySQL Workbench
       win_chocolatey:
         name: mysql.workbench
+        version: '8.0.36'
+        source: https://community.chocolatey.org/api/v2/
         state: present

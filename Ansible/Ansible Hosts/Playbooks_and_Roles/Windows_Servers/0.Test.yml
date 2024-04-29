@@ -5,11 +5,6 @@
 
   roles:
     - role: MySQL_Workbench_Role
-      tasks_from: tasks/1.Install_NetFramework.yml
-    - role: MySQL_Workbench_Role
-      tasks_from: tasks/2.Install_Packages.yml
-    - role: MySQL_Workbench_Role
-      tasks_from: tasks/3.Install_MySQL_Workbench.yml
 
     tasks:
       - name: Install MySQL Workbench

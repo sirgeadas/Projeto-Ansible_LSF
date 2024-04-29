@@ -1,33 +1,31 @@
 
-- name: Download .NET Framework 4.0 installer if it doesn't exist
+#- name: Download .NET Framework 4.8
+#  win_get_url:
+#    url: "https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48"
+#    dest: C:\Temp\dotnet48.exe
+
+#- name: Install .NET Framework 4.8
+#  win_shell: |
+#    Start-Process -Wait -FilePath C:\Temp\dotnet48.exe -ArgumentList "/q /norestart"
+
+- name: Download Chocolatey Installer
+      win_get_url:
+        url: "https://chocolatey.org/install.ps1"
+        dest: C:\Temp\install_choco.ps1
+
+- name: Run Chocolatey Installer
   win_shell: |
-    $installerPath = "C:\\Temp\\dotnet-framework-4.0.exe"
-    if (-Not (Test-Path $installerPath)) {
-        Invoke-WebRequest -Uri "https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer" -OutFile $installerPath
-    }
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    . C:\Temp\install_choco.ps1
+  args:
+    executable: powershell.exe
 
-- name: Install .NET Framework 4.0
-  win_shell: |
-    Start-Process -FilePath "C:\\Temp\\dotnet-framework-4.0.exe" -ArgumentList "/q" -Wait
-
-- name: Install Chocolatey
-  win_chocolatey:
-    name: chocolatey
-    state: present
-
-
-
-- name: Install .NET Framework 4.5.2
-  win_chocolatey:
-    name: dotnet4.5.2
-    state: present
-
-- name: Install Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
-  win_chocolatey:
-    name: vcredist140
-    version: '14.38.33135'
-    source: https://community.chocolatey.org/api/v2/
-    state: present
+#- name: Install Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
+#  win_chocolatey:
+#    name: vcredist140
+#    version: '14.38.33135'
+#    source: https://community.chocolatey.org/api/v2/
+#    state: present
 
 - name: Reboot the system
   win_reboot:

@@ -1,4 +1,0 @@
-
-- name: Reboot System
-  win_reboot:
-    reboot_timeout: 180

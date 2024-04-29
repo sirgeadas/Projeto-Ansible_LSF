@@ -1,0 +1,25 @@
+---
+- name: Uninstall MySQL server and all of its folders/dependencies
+  hosts: dbservers
+  become: yes
+
+  tasks:
+    - name: Remove MySQL package
+      package:
+        name: mysql-server
+        state: absent
+
+    - name: Remove MySQL package
+      package:
+        name: mysql-server
+        state: absent
+
+    - name: Delete MySQL data directory
+      file:
+        path: /var/lib/mysql
+        state: absent
+
+    - name: Delete MySQL config files
+      file:
+        path: /etc/mysql
+        state: absent        

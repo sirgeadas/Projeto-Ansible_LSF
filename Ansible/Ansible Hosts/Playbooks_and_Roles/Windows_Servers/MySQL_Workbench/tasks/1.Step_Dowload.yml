@@ -17,7 +17,7 @@
 
 - name: Download installer if it doesn't exist
   win_shell: |
-    $installerPath = "C:\Temp\mysql-workbench.msi"
+    $installerPath = "C:\\Temp\\mysql-workbench.msi"
     if (-Not (Test-Path $installerPath)) {
         Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile $installerPath
     }

@@ -1,0 +1,22 @@
+---
+- name: Install MySQL Workbench on Windows
+  hosts: windows_server
+  gather_facts: no  # Disable facts gathering for Windows hosts
+  tasks:
+    - name: Install Chocolatey
+      win_chocolatey:
+        name: chocolatey
+        state: present
+      become: yes
+
+    - name: Install Win32-OpenSSH
+      win_chocolatey:
+        name: openssh
+        state: present
+      become: yes
+
+    - name: Install MySQL Workbench
+      win_chocolatey:
+        name: mysql.workbench
+        state: present
+      become: yes

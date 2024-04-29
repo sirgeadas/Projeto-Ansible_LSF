@@ -1,35 +1,38 @@
-# Do this so that ansible can access the Windows Server machines
+# How to prepare the Windows Servers machines
+# So that that ansible can access them.
 
-**Step 1:** Run powershell as administrator </p>
-Win+R -> powershell
+</p>
+
+**Step 1:** Access your Windows Server machine by RDP.
+</p>
+</p>
+
+**Step 2:** Run powershell as administrator </p>
+Use the combo Win+R and then type: powershell
 </p>
 </p>
 
 **Step 2:** Copy this code: 
 
 ```bash
- netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow protocol=TCP localport=5985
+ netsh advfirewall firewall add rule name="Allow WinRM" dir=in action=allow protocol=TCP localport=5985
 ````
->  Replace MACHINE_NAME with your machine's name. 
 
 </p>
 
-**Step 3:** Paste it on your machine's powershell terminal:
-</p>
-</p>
-</p>
-</p>
+**Step 3:** Paste it on your machines powershell terminal.
 
+</p>
+</p>
 
 **Optional:**  
 
 If you want the machine to accept ICMP requests run this command as Administrator on PowerShell:
 
 ```Bash
-netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow protocol=TCP localport=5985
+netsh advfirewall firewall add rule name="Allow ICMP" dir=in action=allow protocol=ICMPv4
 ````
 
-> Replace MACHINE_NAME with your machine's name.
 
 </p>
 </p>
@@ -38,5 +41,16 @@ netsh advfirewall firewall add rule name="MACHINE_NAME" dir=in action=allow prot
 
 
 ##### Your Windows Server is now ready to accept ansible commands.
+
+
+Test the connection using this command:
+```Bash
+ansible -i inventory.yml ANSIBLE_WIN_HOST_NAME -m win_ping -k
+````
+> Replace "inventory.yml" with your Inventory's location.
+> Replace ANSIBLE_WIN_HOST_NAME with your actual host's name thats in your Inventory file. EX: WinPROD
+
+This will send an ping command to the host machine. The "-k" suffix is needed to access the machine with an Password.
+
 
 Cheers! :raised_hands:

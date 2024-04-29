@@ -1,2 +1,5 @@
 ---
-# handlers file for MySQL_Workbench_Role
+handlers:
+  - name: Reboot System
+    win_reboot:
+      reboot_timeout: 180

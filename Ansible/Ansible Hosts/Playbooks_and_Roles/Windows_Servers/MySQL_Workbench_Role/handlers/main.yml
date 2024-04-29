@@ -1,5 +1,4 @@
----
-handlers:
-  - name: Reboot System
-    win_reboot:
-      reboot_timeout: 180
+
+- name: Reboot System
+  win_reboot:
+    reboot_timeout: 180

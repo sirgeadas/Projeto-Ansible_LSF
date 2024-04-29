@@ -1,24 +1,19 @@
----
-- name: Install MySQL Workbench on Windows
-  hosts: windows_servers
-  gather_facts: no 
-  tasks:
-    - name: Install Chocolatey
-      win_chocolatey:
-        name: chocolatey
-        state: present
+- name: Install Chocolatey
+  win_chocolatey:
+    name: chocolatey
+    state: present
 
-    - name: Install .NET Framework 4.5.2
-      win_chocolatey:
-        name: dotnet4.5.2
-        state: present
+- name: Install .NET Framework 4.5.2
+  win_chocolatey:
+    name: dotnet4.5.2
+    state: present
 
-    - name: Install Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
-      win_chocolatey:
-        name: vcredist140
-        version: '14.38.33135'
-        source: https://community.chocolatey.org/api/v2/
-        state: present
-        notify: Reboot System
+- name: Install Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
+  win_chocolatey:
+    name: vcredist140
+    version: '14.38.33135'
+    source: https://community.chocolatey.org/api/v2/
+    state: present
+    notify: Reboot System
 
     

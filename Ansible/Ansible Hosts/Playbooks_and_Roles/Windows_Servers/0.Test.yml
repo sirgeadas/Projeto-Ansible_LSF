@@ -7,10 +7,8 @@
       win_chocolatey:
         name: chocolatey
         state: present
-      become: yes
 
     - name: Install MySQL Workbench
       win_chocolatey:
         name: mysql.workbench
         state: present
-      become: yes

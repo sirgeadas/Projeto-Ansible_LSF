@@ -9,9 +9,9 @@
 #    Start-Process -Wait -FilePath C:\Temp\dotnet48.exe -ArgumentList "/q /norestart"
 
 - name: Download Chocolatey Installer
-      win_get_url:
-        url: "https://chocolatey.org/install.ps1"
-        dest: C:\Temp\install_choco.ps1
+  win_get_url:
+    url: "https://chocolatey.org/install.ps1"
+    dest: C:\Temp\install_choco.ps1
 
 - name: Run Chocolatey Installer
   win_shell: |

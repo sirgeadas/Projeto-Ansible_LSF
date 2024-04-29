@@ -1,7 +1,4 @@
-- name: Install Chocolatey
-  win_chocolatey:
-    name: chocolatey
-    state: present
+
 
 - name: Install .NET Framework 4.5.2
   win_chocolatey:

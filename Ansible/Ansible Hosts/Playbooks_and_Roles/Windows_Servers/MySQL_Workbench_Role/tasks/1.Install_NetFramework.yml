@@ -1,0 +1,16 @@
+
+- name: Download .NET Framework 4.0 installer if it doesn't exist
+  win_shell: |
+    $installerPath = "C:\\Temp\\dotnet-framework-4.0.exe"
+    if (-Not (Test-Path $installerPath)) {
+        Invoke-WebRequest -Uri "https://dotnet.microsoft.com/download/dotnet-framework/net40" -OutFile $installerPath
+    }
+
+- name: Install .NET Framework 4.0
+  win_shell: |
+    Start-Process -FilePath "C:\\Temp\\dotnet-framework-4.0.exe" -ArgumentList "/q" -Wait
+
+- name: Install Chocolatey
+  win_chocolatey:
+    name: chocolatey
+    state: present

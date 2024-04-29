@@ -5,16 +5,17 @@
 
   tasks:
     - name: Update para sistemas Linux
-        when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
-          yum:
-            name: '*'
-            state: latest
-          apt:
-            upgrade: "dist"
+      when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+      yum:
+        name: '*'
+        state: latest
+      apt:
+        upgrade: "dist"
 
-    - name: Run Windows Updates.
-      include_role:
-      name: osupdate
+    - name: Run Windows Updates
+      win_updates:
+        roles:
+    - MySQL_Server_Role
 
       
 

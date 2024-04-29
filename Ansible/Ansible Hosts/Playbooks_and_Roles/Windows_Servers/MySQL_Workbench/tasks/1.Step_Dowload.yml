@@ -14,7 +14,7 @@
   ansible.builtin.stat:
     path: C:\Temp\mysql-workbench.msi
   register: workbench_installer
-  
+
 - name: Download installer if it doesn't exist
   win_shell: |
     $installerPath = "C:\Temp\mysql-workbench.msi"
@@ -23,3 +23,8 @@
     }
   args:
     executable: powershell.exe
+
+- name: Download Visual C++ Redistributable
+  ansible.windows.win_get_url:
+    url: https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
+    dest: C:\Temp\vc-redist.exe

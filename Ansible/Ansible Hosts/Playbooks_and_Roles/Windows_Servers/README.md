@@ -43,7 +43,7 @@ netsh advfirewall firewall add rule name="Allow ICMP" dir=in action=allow protoc
 ##### Your Windows Server is now ready to accept ansible commands.
 
 
-Test the connection using this command:
+Test the connection on your control node using this command:
 ```Bash
 ansible -i inventory.yml ANSIBLE_WIN_HOST_NAME -m win_ping -k
 ````

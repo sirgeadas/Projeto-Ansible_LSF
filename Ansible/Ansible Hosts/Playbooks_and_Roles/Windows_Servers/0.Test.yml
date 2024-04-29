@@ -4,15 +4,8 @@
   gather_facts: no
 
   roles:
-    - MySQL_Workbench_Role  
+    - MySQL_Workbench_Role\tasks\1.Install_NetFramework.yml
+    - MySQL_Workbench_Role\tasks\2.Install_Packages.yml
+    - MySQL_Workbench_Role\tasks\3.Install_MySQL_Workbench.yml
 
   tasks:
-
-    - name: Download installer if it doesn't exist
-      win_shell: |
-        $installerPath = "C:\\Temp\\mysql-workbench.msi"
-        if (-Not (Test-Path $installerPath)) {
-            Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile $installerPath
-        }
-      args:
-        executable: powershell.exe        

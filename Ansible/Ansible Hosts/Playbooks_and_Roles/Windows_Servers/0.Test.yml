@@ -7,9 +7,12 @@
     - MySQL_Workbench_Role  
 
   tasks:
-    - name: Install MySQL Workbench
-      win_chocolatey:
-        name: mysql.workbench
-        version: '8.0.36'
-        source: https://community.chocolatey.org/api/v2/
-        state: present
+
+    - name: Download installer if it doesn't exist
+      win_shell: |
+        $installerPath = "C:\\Temp\\mysql-workbench.msi"
+        if (-Not (Test-Path $installerPath)) {
+            Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile $installerPath
+        }
+      args:
+        executable: powershell.exe        

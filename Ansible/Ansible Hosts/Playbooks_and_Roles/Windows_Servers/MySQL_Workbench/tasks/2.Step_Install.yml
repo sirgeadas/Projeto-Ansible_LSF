@@ -1,0 +1,5 @@
+- name: Install MySQL Workbench
+  ansible.windows.win_package:
+    path: C:\Temp\mysql-workbench.msi
+    state: present
+    arguments: /qb

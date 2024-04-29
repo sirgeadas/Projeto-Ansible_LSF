@@ -1,0 +1,16 @@
+---
+- name: Creating a temporary folder
+  ansible.windows.win_file:
+    path: C:\Temp
+    state: directory
+
+- name: Check if MySQL Workbench installer exists
+  win_shell: |
+    $installerPath = "C:\Temp\mysql-workbench.msi"
+    if (-Not (Test-Path $installerPath)) {
+        Invoke-WebRequest -Uri "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.36-winx64.msi" -OutFile $installerPath
+    }
+  args:
+    executable: powershell.exe
+
+

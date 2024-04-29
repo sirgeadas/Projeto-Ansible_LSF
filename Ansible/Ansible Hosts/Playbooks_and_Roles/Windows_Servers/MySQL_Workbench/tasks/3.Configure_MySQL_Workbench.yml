@@ -1,0 +1,16 @@
+- name: Set connection variables based on host
+  set_fact:
+    dbserver_host: "{{ 'dbserver_prod_host' if inventory_hostname == 'WinPROD' else 'dbserver_dr__host' }}"
+    dbserver_user: "{{ 'dbserver_prod_user' if inventory_hostname == 'WinPROD' else 'dbserver_dr__user' }}"
+    dbserver_password: "{{ 'dbserver_prod_password' if inventory_hostname == 'WinPROD' else 'dbserver_dr_password' }}"
+# this variables are stored in vars/secrets.yml
+
+- name: Create MySQL Workbench Connection
+  ansible.builtin.win_shell: |
+    $connectionName = "MyDatabase"
+    $hostname = "{{ dbserver_host }}"
+    $port = "3306"
+    $username = "{{ dbserver_user }}"
+    $password = "{{ dbserver_password }}"
+  args:
+    executable: powershell.exe

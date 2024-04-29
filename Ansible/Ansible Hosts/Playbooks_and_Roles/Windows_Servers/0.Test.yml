@@ -4,7 +4,7 @@
   gather_facts: no
 
   roles:
-    - mysql_workbench_installation  
+    - MySQL_Workbench_Role  
 
   tasks:
     - name: Install MySQL Workbench

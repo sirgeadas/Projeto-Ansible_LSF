@@ -1,0 +1,15 @@
+---
+#System Settings
+php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+
+
+#HTTP Settings
+http_host: "lsf"
+http_conf: "lsf.conf"
+http_port: "80"
+
+#Old HTTP Settings
+#http_host: "your_domain"
+#http_conf: "your_domain.conf"
+
+wordrpress_server_ip: "{{ ansible_default_ipv4.address }}"

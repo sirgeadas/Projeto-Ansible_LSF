@@ -3,8 +3,8 @@
   hosts: windows_servers
   gather_facts: no
 
-  roles:
-    - role: MySQL_Workbench_Role
+ # roles:
+  #  - role: MySQL_Workbench_Role
 
   tasks:
     - name: Install MySQL Workbench

@@ -4,22 +4,32 @@
   become: yes
 
   tasks:
-    - name: Remove MySQL package
-      package:
-        name: mysql-server
+    - name: Remove mysql-server and mysql-server-8.0 packages
+      apt:
+        name:
+          - mysql-server
+          - mysql-server-8.0
+        state: absent
+        purge: yes
+
+    - name: Autoremove unnecessary packages
+      command: apt-get autoremove -y
+
+    - name: Autoclean package cache
+      command: apt-get autoclean -y
+
+    - name: Remove MySQL configuration directory
+      file:
+        path: /etc/mysql
         state: absent
 
-    - name: Remove MySQL package
-      package:
-        name: mysql-server
-        state: absent
-
-    - name: Delete MySQL data directory
+    - name: Remove MySQL data directory
       file:
         path: /var/lib/mysql
         state: absent
 
-    - name: Delete MySQL config files
+    - name: Ensure /etc/mysql/conf.d/ directory exists
       file:
-        path: /etc/mysql
-        state: absent        
+        path: /etc/mysql/conf.d/
+        state: directory
+        mode: '0755'

@@ -3,8 +3,7 @@
   hosts: webservers
   become: true
   vars_files:
-    - Wordpress_Server_Role/vars/default.yml
-    - Wordpress_Server_Role/vars/secrets.yml
+    - UbuntuWorpress/vars/default.yml
 
   roles:
-    - name: Wordpress_Server_Role
+    - name: UbuntuWorpress

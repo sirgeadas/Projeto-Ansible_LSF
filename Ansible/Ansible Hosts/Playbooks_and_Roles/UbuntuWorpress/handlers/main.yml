@@ -1,2 +1,10 @@
 ---
-# handlers file for Playbooks_and_Roles/UbuntuWorpress
+- name: Reload Apache
+  service:
+    name: apache2
+    state: reloaded
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted

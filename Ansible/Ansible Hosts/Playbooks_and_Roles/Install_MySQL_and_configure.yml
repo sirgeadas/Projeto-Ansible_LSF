@@ -1,5 +1,7 @@
 ---
-- hosts: dbservers
+- name: Install MySQL server and configure
+
+  hosts: dbservers
   become: true
   gather_facts: true
   roles:

@@ -27,7 +27,7 @@
       'VALIDATE PASSWORD component?': ''
       'Change the password for root ?': ''
       'Remove anonymous users?': 'y'
-      'Disallow root login remotely?': 'y'
+      'Disallow root login remotely?': 'n'
       'Remove test database and access to it?': 'y'
       'Reload privilege tables now?': 'y'
     timeout: 1

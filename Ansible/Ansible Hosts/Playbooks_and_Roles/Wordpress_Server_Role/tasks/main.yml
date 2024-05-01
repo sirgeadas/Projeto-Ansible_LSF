@@ -55,12 +55,12 @@
 
 - name: Set wordpress_server_ip for machine with IP webserver_prod
   set_fact:
-    wordpress_server_ip: "{{ secrets['wordpress_server_ip_prod'] }}"
+    wordpress_server_ip: "{{wordpress_server_ip_prod}}"
   when: ansible_default_ipv4.address == "10.0.2.10"
 
 - name: Set wordpress_server_ip for machine with IP webserver_dr
   set_fact:
-    wordpress_server_ip: "{{ secrets['wordpress_server_ip_dr'] }}"
+    wordpress_server_ip: "{{ wordpress_server_ip_dr}}"
   when: ansible_default_ipv4.address == "10.1.2.10"
 
 # WordPress Configuration

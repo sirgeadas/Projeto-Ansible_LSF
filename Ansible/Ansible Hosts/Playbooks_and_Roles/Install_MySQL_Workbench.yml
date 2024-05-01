@@ -1,0 +1,8 @@
+---
+- name: Install MySQL Workbench on Windows
+  hosts: windows_servers
+  gather_facts: no
+
+  roles:
+    - role: MySQL_Workbench_Role
+

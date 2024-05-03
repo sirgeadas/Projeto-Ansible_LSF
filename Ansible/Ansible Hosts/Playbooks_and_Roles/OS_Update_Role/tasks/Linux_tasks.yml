@@ -1,0 +1,25 @@
+---
+- name: Actualizar APT cache (Debian)
+  become: yes
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Upgrade aos pacotes (Debian)
+  become: yes
+  apt:
+    upgrade: dist
+  when: ansible_os_family == "Debian"
+
+- name: Actualizar YUM cache (RedHat)
+  become: yes
+  yum:
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Upgrade aos pacotes (RedHat)
+  become: yes
+  yum:
+    name: '*'
+    state: latest
+  when: ansible_os_family == "RedHat"

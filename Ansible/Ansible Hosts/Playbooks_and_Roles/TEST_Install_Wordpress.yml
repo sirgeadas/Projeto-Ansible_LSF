@@ -1,9 +1,0 @@
----
-- name: Install Wordpress
-  hosts: webservers
-  become: true
-  vars_files:
-    - UbuntuWorpress/vars/default.yml
-
-  roles:
-    - name: UbuntuWorpress

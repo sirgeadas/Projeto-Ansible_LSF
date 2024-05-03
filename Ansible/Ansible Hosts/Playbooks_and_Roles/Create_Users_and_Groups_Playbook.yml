@@ -1,31 +1,31 @@
 ---
-- name: Gestao de utilizadores e grupos
+- name: Criação de Utilizadores e Grupos
   hosts: linux_servers
 
   tasks:
-    - name: criar grupo dev
+    - name: Criação grupo "dev"
       group: 
         name: dev
         state: present
 
-    - name: criar grupo dba
+    - name: criar grupo "dba"
       group: 
         name: dba
         state: present 
 
-    - name: criar usuario developer
+    - name: Criação do utilizador developer
       user:
         name: developer
         group: dev 
         state: present
 
-    - name: criar usuario dbdev
+    - name: Criação do utilizador dbdev
       user: 
         name: dbdev
         groups: dev
         state: present  
 
-    - name: criar usuario dbadmin
+    - name:  Criação do utilizador dbadmin
       user:
         name: dbadmin
         groups: dba

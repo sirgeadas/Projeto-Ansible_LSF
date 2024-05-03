@@ -1,4 +1,6 @@
 ---
+become: yes
+
 - name: Actualizar APT cache (Debian)
   apt:
     update_cache: yes

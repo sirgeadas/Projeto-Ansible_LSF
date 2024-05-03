@@ -1,0 +1,11 @@
+---
+become: yes
+
+- name: Actualizar YUM cache (RedHat)
+  yum:
+    update_cache: yes
+
+- name: Upgrade aos pacotes (RedHat)
+  yum:
+    name: '*'
+    state: latest

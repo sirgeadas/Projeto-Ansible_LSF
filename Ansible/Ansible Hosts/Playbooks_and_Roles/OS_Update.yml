@@ -5,9 +5,4 @@
 
   roles:
     - role: OS_Update_Role
-      tasks_from: Linux_Update
-      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
-
-    - role: OS_Update_Role
-      tasks_from: Windows_Update
-      when: ansible_os_family == "Windows"
+ 

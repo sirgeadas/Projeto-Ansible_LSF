@@ -63,11 +63,23 @@ This role does not have any dependencies.
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This is how the playbook should be used. Please include the vars defaults.yml and secrets.yml
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+---
+- name: Install Wordpress
+  hosts: webservers
+  become: true
+  vars_files:
+    - Wordpress_Server_Role/vars/default.yml
+    - Wordpress_Server_Role/vars/secrets.yml
+
+  roles:
+    - name: Wordpress_Server_Role
+
+How to run the playbook (run this playbook on the Ansible Hosts folder):
+```
+ansible-playbook Install_Wordpress.yml --ask-vault-password
+```
 
 License
 -------

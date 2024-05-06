@@ -1,4 +1,4 @@
-# Part one, Terraform
+## Part one, Terraform
 
 We used Terraform to create the Vnets and the virtual machines in Azure. Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure.
 
@@ -59,6 +59,7 @@ This command is used to apply the changes required to reach the desired state of
 ```
 terraform apply main.tfplan
 ```
-Terraform will now build the Vnets, virtual machines and the NSG's in Microsoft Azure.
+Terraform will now build the Vnets, virtual machines and the NSG's in Microsoft Azure. After everything is concluded, go to the Azure portal and **take note of the machine's public IP's**.
 <p>
-Please proceed to Part two.
+
+Lets move to part two! :arrow_forward:

@@ -1,0 +1,5 @@
+---
+#- name: Determinar Sistema Operativo
+#  include_tasks: "{{ ansible_os_family }}_tasks.yml"
+- name: Determinar Sistema Operativo
+  include_tasks: "{{ ansible_system }}_tasks.yml"

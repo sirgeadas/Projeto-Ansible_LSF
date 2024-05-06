@@ -1,12 +1,8 @@
 ---
 - name: Atualização dos Sistemas operativos
   hosts: all
+  gather_facts: true
 
   roles:
     - role: OS_Update_Role
-      tasks_from: tasks/Linux_Update.yml
-      when: ansible_os_family == "Debian" ansible_os_family == "RedHat"
-
-    - role: OS_Update_Role
-      tasks_from: Windows_Update
-      when: ansible_os_family == "Windows"
+ 

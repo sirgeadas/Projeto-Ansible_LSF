@@ -62,4 +62,4 @@ terraform apply main.tfplan
 Terraform will now build the Vnets, virtual machines and the NSG's in Microsoft Azure. After everything is concluded, go to the Azure portal and **take note of the machine's public IP's**.
 <p>
 
-Lets move to part two! :arrow_forward:
+[Lets move to part two!](Part2.md)  :arrow_forward:

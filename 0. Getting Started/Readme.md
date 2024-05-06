@@ -32,5 +32,4 @@ mkdir ~/.ssh
 ....
 
 
-Now we can proceed to part one!
-Click here!
+[Now we can proceed to part one!](Part1.md) :arrow_forward:

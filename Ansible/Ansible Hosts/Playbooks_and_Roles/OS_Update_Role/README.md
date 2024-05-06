@@ -24,19 +24,19 @@ This Ansible role is responsible for performing the following tasks on a system:
 -Restart the Windows system if necessary
 
 
-Requirements
+### Requirements
 ------------
 
 The target Windows machines must have whitelisted network access to download updates.
 
 This role has been tested on Ubuntu and CentOS/RHEL systems. It requires Ansible to be installed on the control node.
 
-Role Variables
+### Role Variables
 --------------
 
 By default, this role installs the default categories of updates provided by the Ansible OS_Update_Role module.
 
-Dependencies
+### Dependencies
 ------------
 
 This role does not have any dependencies.
@@ -50,11 +50,11 @@ Example Playbook
     include_role:
      name:OS_Update_Role
 ```
-License
+### License
 -------
 GPL
 
-Author Information
+### Author Information
 -------
 
 This role was created by LSF. You can reach me at (https://github.com/sirgeadas/Projeto-Ansible_LSF)

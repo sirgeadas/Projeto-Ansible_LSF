@@ -1,25 +1,25 @@
 ---
-- name: Criação de Utilizadores e Grupos
+- name: Adding Groups and Users
   hosts: linux_servers
 
   tasks:
-    - name: Criação grupo "dev"
+    - name: Creation of the Group "dev"
       group: 
         name: dev
         state: present
 
-    - name: criar grupo "dba"
+    - name: Creation of the Group "dba"
       group: 
         name: dba
         state: present 
 
-    - name: Criação do utilizador developer
+    - name: Creation of the User "developer"
       user:
         name: developer
         group: dev 
         state: present
 
-    - name: Criação do utilizador dbdev
+    - name: Creation of the User "dbdev"
       user: 
         name: dbdev
         groups: dev

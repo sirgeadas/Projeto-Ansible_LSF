@@ -2,5 +2,9 @@ Terraform Files/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.
 Terraform Files/.terraform/providers/registry.terraform.io/hashicorp/azurerm/2.99.0/windows_amd64/terraform-provider-azurerm_v2.99.0_x5.exe
 Terraform Files/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.99.0/windows_amd64/terraform-provider-azurerm_v3.99.0_x5.exe
 #.gitignore
-.vscode
-settings.json
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets

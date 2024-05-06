@@ -41,7 +41,7 @@ ansible --version
 
 Awesome! Now we are ready to turn those two Ubuntu Servers with public IP into full fledged Ansible Control nodes!
 
-[Onto Part 3!]('Part 3.md') :arrow_forward:
+[Onto Part 3!](Part3.md) :arrow_forward:
 
 
 

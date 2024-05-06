@@ -39,5 +39,3 @@ Geographic information system (GIS) functions require spatial libraries.
 System Configuration:
 MySQL Server may have specific system configuration requirements such as minimum memory limits, file descriptor limits, and kernel parameter settings (e.g., max_connections, innodb_buffer_pool_size).
 
-
-

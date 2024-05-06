@@ -28,7 +28,7 @@ If you do not have this folder, create it using this command:
 mkdir ~/.ssh
 ```
 
-2. Now we need to generate the
+2. Now we need to generate the SSH Keys
 ....
 
 

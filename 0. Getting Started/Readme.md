@@ -6,14 +6,14 @@ You'll need to have this already installed and ready:
 
 - Microsoft Visual Studio Code (VSC)
 - Terraform extention installed on VSC
+- Azure CLI
 - Git
 
 **Part 0 - Getting things ready**
 
 *Step 1:*
-
 1. Download the repo if you've didn't already:
-```
+```bash
 https://github.com/sirgeadas/Projeto-Ansible_LSF.git
 ```
 2. Extract the files and store them where you want. The Documents folder is a good place.

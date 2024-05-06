@@ -21,13 +21,12 @@ Make sure to check the specific version and documentation of MySQL Workbench for
 Role Variables
 --------------
 
-Nao é necessario configuraçoes neste role 
-
+There is no need to configure this role 
 
 
 Dependencies
 ------------
-Nao é necessario configuraçoes neste role 
+This role does not have any dependencies.
 
 
 
@@ -40,6 +39,3 @@ Example Playbook
     - MySQL_Workbench_Role
 
 
-
-Author Information
-------------------

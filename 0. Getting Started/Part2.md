@@ -24,7 +24,7 @@ The first time you launch Ubuntu, a console window will open, and you'll be aske
 ### Step 3: Update and Upgrade Ubuntu Repository
 Before installing any new packages, it's a good practice to update and upgrade the repository. You can do this by running:
 ```bash
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 ```
 
 <br/>
@@ -32,7 +32,7 @@ sudo apt update && sudo apt upgrade
 ### Step 4: Install Ansible
 You can install Ansible on Ubuntu by running:
 ```bash
-sudo apt install ansible
+sudo apt install ansible -y
 ```
 
 <br/>

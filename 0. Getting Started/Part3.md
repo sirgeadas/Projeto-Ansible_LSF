@@ -2,6 +2,9 @@
 
 In this part, we will configure the Ansible Control Nodes. Follow these steps:
 
+<br/>
+<br/>
+
 ### Step 1: Edit the Inventory File
 In Visual Studio Code, go to the explorer tab. Alternatively, you can press `CTRL+Shift+E`. <p>
 Navigate to `2.Ansible > Ansible Control Nodes > Inventory` and edit the `Inventory.yml` file with the public IP addresses of `controlnodedr` and `controlnodeprod`.
@@ -15,5 +18,59 @@ ansible_servers:
    ansible_dr: 
       ansible_host: XXX.XXX.XXX.XXX
 ```
-Azure might give a different public IP address every time the Terraform creates the machines. So keep this in mind.
-      
+Azure might give a different public IP address every time the Terraform creates the machines. So keep this in mind. Save the file.
+
+<br/>      
+
+### Step 2: Copying the SSH Keys to Repository 
+The supplied `SSH_keys_script` that you downloaded before, are now needed.
+Please extract them to the root of the `Projeto-Ansible_LSF` folder.
+It should be something like this:
+```
+Projeto-Ansible_LSF
+├── ssh_keys  
+|    ├── controlnodedr    -> These are the keyes needed!
+|    └── controlnodeprod  -> These are the keyes needed!
+├── 0. Getting Started 
+├── 1. Terraform Files 
+├── 2. Ansible 
+├── .gitignore 
+├── LICENCE.md 
+└── README.md
+```
+
+### Step 3: Copying the Repository files to the WSL machine
+
+Since our terminal is still on the WSL Ubuntu machine and we need to copy some files. type:
+```
+exit
+```
+and then:
+```
+Copy-Item -Path "C:\Users\$env:USERNAME\Documents\Projeto-Ansible_LSF" -Destination "\\wsl$\Ubuntu\home\YOUR_WSL_USERNAME\" -Recurse
+```
+Replace `YOUR_WSL_USERNAME` with the username that you gave on `Part2 - Step 2` <p>
+This will copy the repo to the WSL Ubuntu machine, which will allow the machine to run the necessary playbooks on the Azure machines (that soon will become Ansible Control nodes) and the SSH keys necessary to target the machines with the playbook.
+
+<br/>
+
+### Step 3: Copying the SSH Keys to the correct place
+Previously, we've copied the keys that where supplied to the `Projeto-Ansible_LSF` folder. Now we need to move them to the right place. Type:
+
+```
+mkdir -p ~/.ssh && cp ~/Projeto-Ansible_LSF/ssh_keys/ControlNode* ~/.ssh/ && chmod 0600 ~/.ssh/ControlNode* && touch ~/.ssh/known_hosts && for keyfile in ~/.ssh/ControlNode*; do ssh-keygen -lf $keyfile >> ~/.ssh/known_hosts; done
+```
+We can now run ansible to the target machines! :smile:
+
+<br/>
+
+### Step 4: Using ansible to ping the machines.
+
+Type:
+```
+cd Projeto-Ansible_LSF/2.\ Ansible/Ansible\ Control\ Nodes/
+```
+and then:
+```
+ansible -m ansible.builtin.ping 
+```

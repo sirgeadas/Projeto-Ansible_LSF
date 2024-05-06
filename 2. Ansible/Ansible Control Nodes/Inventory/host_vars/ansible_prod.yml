@@ -1,2 +1,2 @@
 ansible_user: controlnodeprod
-ansible_key: ~/.ssh/ControlNodePROD
+ansible_private_key: ~/.ssh/ControlNodePROD

@@ -1,6 +1,6 @@
 # Part 4, How to prepare the Windows Servers machines so that that ansible can access them.
 
-In this part we will get the Windows Servers ready so that Ansible can access them and do it's magic! 🪄🐰🎩
+In this part we will get the Windows Servers ready so that Ansible can access them and do it's magic! 🐰🎩
 
 <br/>
 <br>
@@ -28,7 +28,7 @@ Paste this command in powershell:
 This will add an exception on the Windows Server so that ansible can reach the machine using `WinRM` protocol.
 
 
-Repeat this step on the other Windows machine. :performing_arts:
+**Repeat this step on the other Windows machine.** :performing_arts:
 
 > [!NOTE]
 >Your Windows Server is now ready to accept ansible commands. :partying_face:

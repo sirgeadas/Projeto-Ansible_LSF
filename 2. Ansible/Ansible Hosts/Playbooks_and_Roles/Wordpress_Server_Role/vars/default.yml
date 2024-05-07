@@ -1,0 +1,17 @@
+---
+#System Settings
+php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+
+#HTTP Settings
+http_host: "lsf"
+http_conf: "lsf.conf"
+http_port: "80"
+
+# Wordpress Settings. User, Password and database name of the 
+# MySQL database are kept in the secrets.yml file
+wordpress_server_ip: "0"
+
+
+#Old HTTP Settings
+#http_host: "your_domain"
+#http_conf: "your_domain.conf"

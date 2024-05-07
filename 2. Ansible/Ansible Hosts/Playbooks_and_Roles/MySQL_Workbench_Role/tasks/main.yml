@@ -1,0 +1,49 @@
+- name: Verify C:\Temp folder existence
+  ansible.windows.win_stat:
+    path: C:\Temp
+  register: temp_folder
+
+- name: Create C:\Temp folder if it doesn't exist
+  ansible.windows.win_file:
+    path: C:\Temp
+    state: directory
+  when: not temp_folder.stat.exists
+  
+- name: Download Chocolatey Installer
+  win_get_url:
+    url: "https://chocolatey.org/install.ps1"
+    dest: C:\Temp\install_choco.ps1
+
+- name: Run Chocolatey Installer
+  win_shell: |
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    . C:\Temp\install_choco.ps1
+  args:
+    executable: powershell.exe
+
+- name: Reboot the system
+  win_reboot:
+    reboot_timeout: 200
+
+- name: Download Visual C++ Redistributable for Visual Studio 2019
+  win_get_url:
+    url: https://aka.ms/vs/17/release/vc_redist.x64.exe
+    dest: C:\temp\vc_redist.x64.exe
+
+- name: Install Visual C++ Redistributable for Visual Studio 2019
+  win_package:
+    path: C:\temp\vc_redist.x64.exe
+    arguments: '/install /passive /norestart'
+    state: present
+
+- name: Reboot the system
+  win_reboot:
+    reboot_timeout: 200        
+
+- name: Install MySQL Workbench
+  win_chocolatey:
+    name: mysql.workbench
+    version: '8.0.36'
+    source: https://community.chocolatey.org/api/v2/
+    state: present    
+    force: yes

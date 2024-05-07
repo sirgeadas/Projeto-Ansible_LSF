@@ -1,0 +1,22 @@
+---
+- name: Verificar actualizações em falta.
+  win_updates: state=searched
+  register: update_count
+
+- name: Listar actualizações em falta.
+  debug: var=update_count
+
+- name: Instalar updates
+  win_updates:
+    category_names: "{{ Windows_Updates }}"
+    log_path: C:\\Ansible_Windows_Update_Log.txt
+  register: updates
+
+- name: Detalhes dos Updates
+  debug:
+    var: updates
+
+- name: Reiniciar o sistema caso seja necessário
+  win_reboot:
+  when: updates.reboot_required
+

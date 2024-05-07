@@ -1,6 +1,0 @@
----
-root_password: password
-admin_user: Wordpress_LSF
-admin_password: xxxx
-db_name: Wordpress
-password_validation_policy: 1 ## Caso confirme nas configuraões de mysql_secure_installation que deseja ativar a validação de senha segura

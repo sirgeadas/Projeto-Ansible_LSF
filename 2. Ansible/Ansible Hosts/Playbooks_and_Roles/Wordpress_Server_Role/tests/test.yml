@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - Playbooks_and_Roles/Wordpress_Server_Role

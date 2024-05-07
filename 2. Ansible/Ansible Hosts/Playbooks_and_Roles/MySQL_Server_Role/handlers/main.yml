@@ -1,0 +1,6 @@
+---
+# handlers file for Playbooks_and_Roles/Install_MySQL_Role
+- name: Reinicar o MySQL
+  systemd:
+    name: mysql
+    state: restarted

@@ -8,7 +8,7 @@ Why are we installing a Linux Subsystem on our Windows machine? The answer is si
 ### Step 1: Enable the Windows Subsystem for Linux
 
 On the terminal in Visual Studio code, type:
-```bash
+```powershell
 wsl --install
 
 ```

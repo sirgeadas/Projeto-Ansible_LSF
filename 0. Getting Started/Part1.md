@@ -41,7 +41,7 @@ On the previously opened terminal navigate to where you stored this repository a
 C:\Users\YOUR_USERNAME\Documents\Projecto-Ansible_LSF>
 ```
 Navigate to ```1. Terraform Files``` using this command:
-```
+```bash
 cd ".\Terraform Files\"
 ```
 <br/>

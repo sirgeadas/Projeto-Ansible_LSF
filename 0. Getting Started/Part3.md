@@ -49,7 +49,7 @@ Since our terminal on **VSC** is still on the WSL Ubuntu machine and we need to 
 exit
 ```
 and then:
-```
+```powershell
 Copy-Item -Path "C:\Users\$env:USERNAME\Documents\Projeto-Ansible_LSF" -Destination "\\wsl$\Ubuntu\home\YOUR_WSL_USERNAME\" -Recurse
 ```
 Replace `YOUR_WSL_USERNAME` with the username that you gave on `Part2 - Step 2` <p>
@@ -59,11 +59,11 @@ This will copy the repository to the WSL Ubuntu machine, which will allow the ma
 
 ### Step 4: Login back to WSL machine
 Now that the WSL has all the files necessary to do what we need, on the **VSC** terminal type:
-```
+```powershell
 WSL
 ```
 and then
-```
+```bash
 cd
 ```
 Just to make sure that we are in the home directory of the WSL machine.
@@ -73,7 +73,7 @@ Just to make sure that we are in the home directory of the WSL machine.
 ### Step 5: Copying the SSH Keys to the correct place
 Previously, we've copied the keys that where supplied to the `Projeto-Ansible_LSF` folder. Now we need to move them to the right place. Type:
 
-```
+```bash
 mkdir -p ~/.ssh && cp ~/Projeto-Ansible_LSF/ssh_keys/ControlNode* ~/.ssh/ && chmod 0600 ~/.ssh/ControlNode* && touch ~/.ssh/known_hosts && for keyfile in ~/.ssh/ControlNode*; do ssh-keygen -lf $keyfile >> ~/.ssh/known_hosts; done
 ```
 We can now run ansible to the target machines! :smile:
@@ -83,11 +83,11 @@ We can now run ansible to the target machines! :smile:
 ### Step 6: Using ansible to ping the machines.
 
 Type:
-```
+```bash
 cd Projeto-Ansible_LSF/2.\ Ansible/Ansible\ Control\ Nodes/
 ```
 and then:
-```
+```bash
 ansible all -m ansible.builtin.ping 
 ```
 If everything went correctly, both machines should respond with an pong. :tennis:
@@ -96,7 +96,7 @@ If everything went correctly, both machines should respond with an pong. :tennis
 
 ### Step 7: Running the setup playbook
 type:
-```
+```bash
 ansible-playbook 1_setup_ansible-server.yml --ask-vault-password
 ```
 This playbook will install and configure everything and turn the machines into ansible control nodes. :dart:
@@ -108,7 +108,7 @@ Copy them and paste them on your `Github's SSH and GPG keys` (located in setting
 
 ### Step 8: Running the clonegit playbook
 type:
-```
+```bash
 ansible-playbook 2_clonegit_ansible-server.yml
 ```
 

@@ -1,7 +1,9 @@
 # Part 4, How to prepare the Windows Servers machines so that that ansible can access them.
 
-In this part we will get the Windows Servers ready so that Ansible can access them and do it's magic! :magic_wand:
+In this part we will get the Windows Servers ready so that Ansible can access them and do it's magic! 🪄🐰🎩
+
 <br/>
+<br>
 
 ## Step 1: Access your Windows Server machine by RDP.
 Go to portal.azure.com and then press `G + /` ant type Virtual Machines. <p/>

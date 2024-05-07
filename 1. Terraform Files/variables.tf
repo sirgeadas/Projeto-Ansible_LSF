@@ -110,3 +110,60 @@ variable "Grupo2-neu-dr-vm-DATABASESERVER" {
   default     = "Grupo2-NEU-DR-DATABASESERVER"
   description = "Group #2 Disaster recovery Database Server."
 }
+
+# Variáveis para hostname ----------
+
+variable "Grupo2-weu-prod-vm-ANSIBLE-HOSTNAME" {
+  type        = string
+  default     = "GRUPO2_ANSIBLE_PROD"
+  description = "Group #2 Production Ansible Control node hostname."
+}
+
+variable "Grupo2-neu-dr-vm-ANSIBLE-HOSTNAME" {
+  type        = string
+  default     = "GRUPO2_ANSIBLE_DR"
+  description = "Group #2 Disaster recovery Ansible Control node hostname."
+}
+
+# ------
+
+variable "Grupo2-weu-prod-vm-WEBSERVER-HOSTNAME" {
+  type        = string
+  default     = "Grupo2_PROD_WEBSERVER"
+  description = "Group #2 Production Web Server hostname."
+}
+
+variable "Grupo2-neu-dr-vm-WEBSERVER-HOSTNAME" {
+  type        = string
+  default     = "Grupo2_DR_WEBSERVER"
+  description = "Group #2 Disaster recovery Web Server hostname."
+}
+
+# -----
+
+variable "Grupo2-weu-prod-vm-WINDOWSSERVER-HOSTNAME" {
+  type        = string
+  default     = "GRUPO2_PROD_WINDOWS"
+  description = "Group #2 Production Windows Server hostname."
+}
+
+variable "Grupo2-neu-dr-vm-WINDOWSSERVER-HOSTNAME" {
+  type        = string
+  default     = "GRUPO2_DR_WINDOWS"
+  description = "Group #2 Disaster recovery Windows Server hostname."
+}
+
+# -----
+
+variable "Grupo2-weu-prod-vm-DATABASESERVER-HOSTNAME" {
+  type        = string
+  default     = "Grupo2_PROD_DATABASESERVER"
+  description = "Group #2 Production Database Server hostname."
+}
+
+variable "Grupo2-neu-dr-vm-DATABASESERVER-HOSTNAME" {
+  type        = string
+  default     = "Grupo2_DR_DATABASESERVER"
+  description = "Group #2 Disaster recovery Database Server hostname."
+}
+

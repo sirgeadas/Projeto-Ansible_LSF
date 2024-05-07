@@ -24,17 +24,17 @@
         upgrade: yes
       when: ansible_os_family == 'Debian'
 
-    - name: Install ansible
+    - name: Install ansible, Python3-pip
       become: yes
-      package:
-        name: ansible
+      apt:
+        name: 
+          - ansible
+          - python3-pip
         state: present
 
-    - name: Install Python3-pip
-      become: yes
-      package:
-        name: python3-pip
-        state: present
+    - name: Install pywinrm
+      pip:
+        name: "pywinrm>=0.3.0"          
 
     - name: Generate SSH key
       shell: ssh-keygen -t ed25519 -C "{{ vault_email_address }}" -f ~/.ssh/{{ GH_key_name }} -N ""
@@ -74,10 +74,6 @@
     - name: Display SSH public key
       debug:
         var: ssh_pub_key_output.stdout
-
-    - name: Install pywinrm
-      pip:
-        name: "pywinrm>=0.3.0"        
 
     - name: Enable Firewall
       command: ufw --force enable

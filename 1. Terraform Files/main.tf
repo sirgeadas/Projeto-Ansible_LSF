@@ -115,7 +115,7 @@ storage_os_disk {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-weu-prod-vm-ANSIBLE-HOSTNAME
     admin_username = "controlnodeprod"
   }
 
@@ -169,7 +169,7 @@ storage_os_disk {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-weu-prod-vm-WEBSERVER-HOSTNAME
     admin_username = "ansible"
   }
 
@@ -224,7 +224,7 @@ storage_os_disk {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-weu-prod-vm-DATABASESERVER-HOSTNAME
     admin_username = "ansible"
   }
 
@@ -290,7 +290,7 @@ resource "azurerm_virtual_machine" "WINDOWS-PROD" {
   }
 
   os_profile {
-    computer_name  = "WINDOWS-PROD"
+    computer_name  = var.Grupo2-weu-prod-vm-WINDOWSSERVER-HOSTNAME
     admin_username = "WinPROD"
     admin_password = var.password_Windows-PROD
   }
@@ -356,7 +356,7 @@ storage_os_disk {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-neu-dr-vm-ANSIBLE-HOSTNAME
     admin_username = "controlnodedr"
   }
 
@@ -411,7 +411,7 @@ resource "azurerm_virtual_machine" "WEBSERVER-DR" {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-neu-dr-vm-WEBSERVER-HOSTNAME
     admin_username = "ansible"
   }
 
@@ -468,7 +468,7 @@ storage_os_disk {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = var.Grupo2-neu-dr-vm-DATABASESERVER-HOSTNAME
     admin_username = "ansible"
   }
 
@@ -536,7 +536,7 @@ resource "azurerm_virtual_machine" "WINDOWS-DR" {
   }
 
   os_profile {
-    computer_name  = "WINDOWS-DR"
+    computer_name  = var.Grupo2-neu-dr-vm-WINDOWSSERVER-HOSTNAME
     admin_username = "WinDR"
     admin_password =  var.password_Windows-DR
 

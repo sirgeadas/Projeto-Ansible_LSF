@@ -28,20 +28,6 @@ This will add an exception on the Windows Server so that ansible can reach the m
 
 Repeat this step on the other Windows machine. :performing_arts:
 
-<br>
-
-**Optional:**  
-
-If you want the machine to accept ICMP requests run this command as Administrator on PowerShell:
-
-```powershell
-netsh advfirewall firewall add rule name="Allow ICMP" dir=in action=allow protocol=ICMPv4
-```
-
-
-<br/>
-<br>
-
 > [!NOTE]
 >Your Windows Server is now ready to accept ansible commands. :partying_face:
 
@@ -58,6 +44,17 @@ ansible win_dr_server -m win_ping -k
 ```
 
 This will send an ping command to the host machine. The "-k" suffix is needed to access the machine with an Password.
+
+<br>
+<br>
+
+**Optional:**  
+
+If you want the machine to accept ICMP requests run this command as Administrator on PowerShell:
+
+```powershell
+netsh advfirewall firewall add rule name="Allow ICMP" dir=in action=allow protocol=ICMPv4
+```
 
 <br>
 

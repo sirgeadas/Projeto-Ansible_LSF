@@ -1,6 +1,7 @@
 ---
 - name: Adding Groups and Users
   hosts: linux_servers
+  become: yes
 
   tasks:
     - name: Creation of the Group "dev"

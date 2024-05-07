@@ -1,4 +1,4 @@
-## Part 3: Configuring the Ansible Control Nodes
+## Part 3, Configuring the Ansible Control Nodes
 
 In this part, we will configure the Ansible Control Nodes. Follow these steps:
 

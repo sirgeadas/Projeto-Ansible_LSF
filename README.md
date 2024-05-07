@@ -1,37 +1,46 @@
-# Projecto Ansible com Terraform :earth_americas:
+# This project was made with Terraform and Ansible :earth_americas:
 
-Este projecto utiliza **Ansible** e **Terraform** para gerir a infraestrutura em Microsoft **Azure**.
+This project uses **ansible** nad **Terraform** to create and manage the Infrastructure hosted in Microsoft **Azure**.
 
-## Ambientes
+## Environments
 
-Existem dois ambientes neste projecto:
+There are two environments in this project:
 
-1. **Produção**
+1. **Production**
 2. **Disaster Recovery**
 
-Cada ambiente está hospedado numa região diferente.
+Each environment is hosted in a different region.
+
+## Terraform
+
+Terraform is used to create servers in Microsoft Azure.
+
 
 ## Ansible
 
-O Ansible é usado para as seguintes tarefas:
+Ansible is used for the following tasks:
 
-- Criação de um único inventário, servidores agrupados com base no tipo de sistema operativo, região, tipo de servidor e ambiente.
-- Criação de um playbook específico para realizar atualizações do sistema operativo em cada servidor.
-- Criação de um playbook para gestão de utilizadores.
-- Configurações de Servidores Web, base de dados e Windows.
+- Creation of a single inventory, servers grouped based on operating system type, region, server type, and environment.
+- Creation of a specific playbook to perform operating system updates on each server.
+- Creation of a playbook for user management.
+- Web server, database, and Windows server configurations.
 
-## Terraform 
 
-O Terraform é usado para criar servidores em Microsoft Azure.
+## How to use :question:
 
-## Como usar :question:
+Please read the `Getting Started` section to be familiar on how to get this project started.
 
-Descarregar e correr no Control node em Ansible.
+#### Getting Started
+- [What you'll need](0.%20Getting%20Started/Readme.md)
+- [Part one, Terraform](#getting-started/Part1.md )
+- [Part two, Installing and configuring WSL](#getting-started/Part2.md)
+- [Part three, Configuring the Ansible Control Nodes](#getting-started/Part3.md)
 
-## Contribuição  :handshake:
 
-Nah, deixa estar isso.
+## Contribution :handshake:
 
-## Licença :scroll:
+If you wish to contribute, please contact us. Cheers!
 
-Este projeto está licenciado sob a Licença MIT - Confirme o ficheiro LICENSE.md para detalhes.
+## License :scroll:
+
+This project is licensed under the MIT License - See the LICENSE.md file for details.

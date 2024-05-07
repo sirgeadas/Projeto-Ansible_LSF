@@ -1,31 +1,39 @@
 ## Part one, Terraform
 
-We used Terraform to create the Vnets and the virtual machines in Azure. Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure.
+Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure.
+We used Terraform to create the Vnets and the virtual machines in Azure. :hammer_and_wrench:
 
 To start, open Visual Studio Code.
 
-*Step1:*
+<br/>
+<br/>
+
+### Step1: Opening the terminal
 Press ```CTRL+ç``` or go to ```Terminal``` *>* ```New Terminal```. Type the following command to login to your Azure account:
 ```
 az login
 ```
 This will open a new browser window asking you to sign in to your Azure account.
 
-*Step 2:* 
+<br/>
+
+### Step 2: Logging in with your Azure subscription
 Set your Azure Subscription: After logging in, you can set your Azure subscription using the following command:
 ```
 az account set --subscription="SUBSCRIPTION_ID"
 ```
-Replace SUBSCRIPTION_ID with the subscription. It should be someting like this: ```00000000-0000-0000-0000-000000000000``` </p>
-Tip: Go to portal.azure.com and on the search bar type: *subscriptions*. The ID is right there.
+Replace SUBSCRIPTION_ID with the subscription.<p/> It should be someting like this: ```00000000-0000-0000-0000-000000000000```
+> :bulb: **Tip:** Go to portal.azure.com and on the search bar type: *subscriptions*. The ID is right there.
 
-</p>
+<br/>
 
-*Step 3:*
+### Step 3: Adding the repository to the Workspace
 Press ```CTRL+Shift+E``` to open the explorer bar. </p>
 Right click and select the option ```Add folder to workspace```
 Navigate to where you stored this repo and add it to the explorer menu.
 All of the files are accessable via this explorer. Including the files that we need to use next, the Terraform files.
+
+<br/>
 
 *Step 4:*
 On the previously opened terminal navigate to where you stored this repository and type: Is should look something like this:

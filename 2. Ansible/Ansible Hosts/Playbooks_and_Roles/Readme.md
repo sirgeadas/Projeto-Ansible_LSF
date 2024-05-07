@@ -53,8 +53,19 @@ Ansible will now ask you for the vault password:
 ```
 Vault password:
 ```
-You now what's the password. Just type it in! :grin:
-This is because there is a file that contains passwords and usernames that must remain encrypted.
+You know the password! Just type it in! :grin:
+This is because there is a file that contains passwords and usernames that must remain encrypted (called `secrets.yml`)
+
+> [!TIP]
+>If you wish to see what that file contains, type:
+>```bash 
+>ansible-vault edit MySQL_Server_Role/vars/secrets.yml
+>```
+>Ansible will ask you for the vault password:
+>```
+>Vault password:
+>```
+>Just type it in and you can now see the variables and they values.
 
 Since each Ansible Control node can only reach the machines in its respective Resource Group, an error will occur as one of the machines is unreachable. Ignore the error. It's all good! :upside_down_face: <p>
 Do the same command on the other Ansible Control node.

@@ -72,5 +72,30 @@ cd Projeto-Ansible_LSF/2.\ Ansible/Ansible\ Control\ Nodes/
 ```
 and then:
 ```
-ansible -m ansible.builtin.ping 
+ansible all -m ansible.builtin.ping 
 ```
+If everything went correctly, both machines should respond with an pong. :cool:
+
+<br/>
+
+### Step 4: Running the setup playbook
+type:
+```
+ansible-playbook 1_setup_ansible-server.yml --ask-vault-password
+```
+This playbook will install and configure everything and turn the machines into ansible control nodes. 
+The `--ask-vault-password` is required because there's variables that must parse sensitive data, and it must be encrypted.
+The password was given by one of your collegues. Its a secret! :innocent:
+
+The WSL machine will output two ssh key yhrough ansible's debug module.
+Copy them and paste them on your `Github's SSH and GPG keys` (located in settings).
+
+### Step 5: Running the clonegit playbook
+type:
+```
+ansible-playbook 2_clonegit_ansible-server.yml
+```
+
+This playbook simply does a git pull of the `Projeto-Ansible_LSF` main repository.
+
+The machines are ready to do ansible playbooks on the target machines. 🎉:partying_face:

@@ -1,0 +1,13 @@
+galaxy_info:
+  author: Sara Peres, Ludmilla Guimarães e Filipe Geadas
+  description: This role updates the operating system, whether it is Debian or Windows.
+  company: UpSkill
+
+
+  license: GPL
+
+  min_ansible_version: 2.1
+  galaxy_tags: [update, LSF, UPskill]
+
+dependencies: []
+# No dependencies needed for this role.

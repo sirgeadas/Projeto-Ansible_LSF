@@ -88,7 +88,7 @@ GPL
 Author Information
 ------------------
 
-This role was created by LSF. You can reach me at (https://github.com/sirgeadas/Projeto-Ansible_LSF)
+This role was created by LSF. You can reach us at (https://github.com/sirgeadas/Projeto-Ansible_LSF)
 
 Feel free to customize this role to fit your specific requirements and contribute back to the Ansible community. 
 

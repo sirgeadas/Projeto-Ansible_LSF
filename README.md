@@ -50,4 +50,4 @@ If you wish to contribute, please contact us. Cheers!
 
 ## License :scroll:
 
-This project is licensed under the MIT License - See the LICENSE.md file for details.
+This project is licensed under the MIT License - See the [LICENSE.md](#license-) file for details.

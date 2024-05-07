@@ -1,6 +1,13 @@
-# This project was made with Terraform and Ansible :earth_americas:
+
+# This project was made with Terraform and Ansible :earth_americas: 
+---
+
+
+<br/>
 
 This project uses **ansible** nad **Terraform** to create and manage the Infrastructure hosted in Microsoft **Azure**.
+
+<br/>
 
 ## Environments
 

@@ -19,6 +19,9 @@ This command installs the Ubuntu distribution of Linux by default. This is exact
 ### Step 2: Set Up Ubuntu
 The first time you launch Ubuntu, a console window will open, and you'll be asked to wait for a minute or two for the installation to complete. Once it's done, you will be asked to create a UNIX username along with a password.<sup>[[1]](#password)</sup>
 
+> [!IMPORTANT]
+ >Please memorize them or store them in a safe place. It'll be necessary to login to this WSL machine.
+
 <br/>
 
 ### Step 3: Update and Upgrade Ubuntu Repository

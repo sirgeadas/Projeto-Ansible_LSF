@@ -16,11 +16,11 @@ If you take a look at the playbooks, they start with a number:
 On your control node, navigate to the following directory:
 
 ```bash
-cd Github/2.\ Ansible/Ansible\ Hosts/Playbooks_and_Roles/
+cd ~/GitHub/2.\ Ansible/Ansible\ Hosts/Playbooks_and_Roles/
 ```
 
 This directory serves as the base from which all commands will be deployed. Within this directory, you’ll find folders containing roles, playbooks, and an `ansible.cfg` file. <p>
-The `ansible.cfg` file specifies the location of the inventory, eliminating the need to invoke the inventory file each time an Ansible command is used. 😉
+The `ansible.cfg` file specifies the location of the inventory, eliminating the need to invoke the inventory file each time an Ansible command is used. 😉 
 
 <br/>
 <br/>

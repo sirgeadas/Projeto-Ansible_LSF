@@ -1,0 +1,9 @@
+---
+- name: Uninstall all the things!!!
+  hosts: all
+  gather_facts: true
+  become: yes
+
+  roles:
+    - role: Delete_Everything_Role
+ 

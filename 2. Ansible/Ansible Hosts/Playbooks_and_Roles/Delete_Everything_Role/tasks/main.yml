@@ -1,0 +1,7 @@
+---
+- name: This will uninstall everything done with this project!
+  tasks:
+    - include_tasks: Uninstall_MySQL.yml
+    - include_tasks: Uninstall_Wordpress.yml
+    - include_tasks: Uninstall_MySQL_Workbench.yml
+    - include_tasks: Remove_Groups_Users.yml

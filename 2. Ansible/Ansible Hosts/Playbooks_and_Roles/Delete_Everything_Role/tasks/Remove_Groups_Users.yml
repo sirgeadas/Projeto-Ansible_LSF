@@ -1,0 +1,28 @@
+---
+hosts: linux_servers
+
+- name: Removal of the User "developer"
+  user:
+    name: developer
+    state: absent
+
+- name: Removal of the User "dbdev"
+  user: 
+    name: dbdev
+    state: absent  
+
+- name: Removal of the User "dbadmin"
+  user:
+    name: dbadmin
+    state: absent
+
+- name: Removal of the Group "dev"
+  group: 
+    name: dev
+    state: absent
+
+- name: Removal of the Group "dba"
+  group: 
+    name: dba
+    state: absent 
+...

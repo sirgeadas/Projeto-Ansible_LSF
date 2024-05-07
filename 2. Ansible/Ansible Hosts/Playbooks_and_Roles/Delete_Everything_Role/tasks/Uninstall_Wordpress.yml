@@ -1,0 +1,48 @@
+---
+tasks:
+- name: Remove wp-config
+  file:
+    path: "/var/www/{{ http_host }}/wordpress/wp-config.php"
+    state: absent
+
+- name: Reset permissions for files
+  file:
+    path: "/var/www/{{ http_host }}/wordpress/"
+    recurse: yes
+    mode: '0777'
+
+- name: Remove WordPress
+  file:
+    path: "/var/www/{{ http_host }}/wordpress"
+    state: absent
+
+- name: Remove document root
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: absent
+
+- name: Disable rewrite module
+  command: /usr/sbin/a2dismod rewrite
+  notify: Restart Apache
+
+- name: Disable site
+  command: /usr/sbin/a2dissite {{ http_conf }}
+  notify: Reload Apache
+
+- name: Remove PHP Extensions
+  apt:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ php_modules }}"
+
+- name: Remove LAMP Packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+  loop: [ 'apache2', 'php', 'php-mysql', 'libapache2-mod-php']
+
+- name: Remove prerequisites
+  apt:
+    name: aptitude
+    state: absent
+...

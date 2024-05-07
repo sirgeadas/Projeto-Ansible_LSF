@@ -39,9 +39,9 @@ Please read the `Getting Started` section to be familiar on how to get this proj
 
 #### Getting Started
 - [What you'll need](0.%20Getting%20Started/Readme.md)
-- [Part one, Terraform](#getting-started/Part1.md )
-- [Part two, Installing and configuring WSL](#getting-started/Part2.md)
-- [Part three, Configuring the Ansible Control Nodes](#getting-started/Part3.md)
+- [Part one, Terraform](0.%20Getting%20Started/Part1.md )
+- [Part two, Installing and configuring WSL](0.%20Getting%20Started/Part2.md)
+- [Part three, Configuring the Ansible Control Nodes](0.%20Getting%20Started/Part3.md)
 
 
 ## Contribution :handshake:

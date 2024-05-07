@@ -23,8 +23,6 @@ Set your Azure Subscription: After logging in, you can set your Azure subscripti
 az account set --subscription="SUBSCRIPTION_ID"
 ```
 Replace SUBSCRIPTION_ID with the subscription.<p/> It should be someting like this: ```00000000-0000-0000-0000-000000000000```
-> :bulb: **Tip:** Go to portal.azure.com and on the search bar type: *subscriptions*. The ID is right there.
-
 
 > [!TIP]
 >**Tip:** Go to portal.azure.com and on the search bar type: *subscriptions*. The ID is right there.

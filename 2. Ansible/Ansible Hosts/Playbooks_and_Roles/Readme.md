@@ -1,5 +1,5 @@
 # How-to run the playbooks:
----
+***
 
 The playbooks where made to be deployed in order.
 If you take a look at the playbooks, they start with a number:
@@ -23,8 +23,11 @@ This directory serves as the base from which all commands will be deployed. With
 The `ansible.cfg` file specifies the location of the inventory, eliminating the need to invoke the inventory file each time an Ansible command is used. 😉
 
 <br/>
+<br/>
 
-## Playbook number 1, Create_Users_and_Groups.yml
+
+## Playbook \#1, Create_Users_and_Groups.yml
+
 To run this playbook, just type:
 ```bash
 ansible-playbook 1.Create_Users_and_Groups.yml -l Production
@@ -42,7 +45,7 @@ This will create the Groups and users on the targeted machines.
 
 <br/>
 
-## Playbook number 2, Install_MySQL_and_configure.yml
+## Playbook \#2, Install_MySQL_and_configure.yml
 
 And now, for our next trick: Installing MySQL-Server on Debian machines.
 To run this playbook, just type:
@@ -72,7 +75,7 @@ Repeat the same command on the other Ansible Control node.
 
 <br/>
 
-## Playbook number 3, Install_MySQL_Workbench.yml
+## Playbook \#3, Install_MySQL_Workbench.yml
 Now, this role targets the Windows machines. This one was a doozy... :woozy_face: <p>
 Type:
 ```bash
@@ -88,7 +91,7 @@ Repeat the same command on the other Ansible Control node.
 
 <br/>
 
-## Playbook number 4, Install_Wordpress.yml
+## Playbook \#4, Install_Wordpress.yml
 
 And here it is, the last one! Just type:
 ```bash

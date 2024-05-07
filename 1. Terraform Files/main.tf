@@ -94,7 +94,7 @@ resource "azurerm_virtual_machine" "ANSIBLE-PROD" {
   location              = var.Prod
   resource_group_name   = var.Default_RG_Prod
   network_interface_ids = [azurerm_network_interface.ANSIBLE-PROD-NIC.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s" 
 
 storage_os_disk {
   name              = "ANSIBLE-Prod-Disk"
@@ -335,7 +335,7 @@ resource "azurerm_virtual_machine" "ANSIBLE-DR" {
   location              = var.Disrec
   resource_group_name   = var.Default_RG_Disrec
   network_interface_ids = [azurerm_network_interface.ANSIBLE-DR-NIC.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s"
 
 storage_os_disk {
   name              = "ANSIBLE-DR-Disk"

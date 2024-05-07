@@ -11,7 +11,7 @@ If you take a look at the playbooks, they start with a number:
 4. Install_Wordpress.yml
 ```
 >[!IMPORTANT]
->Please respect the order for proper function of the playbooks.
+>**Please respect the order for proper function of the playbooks.**
 
 On your control node, navigate to the following directory:
 
@@ -65,10 +65,10 @@ This is because there is a file that contains passwords and usernames that must 
 >```
 >Vault password:
 >```
->Just type it in and you can now see the variables and they values.
+>Just type it in and you can now see the variables and their values.
 
-Since each Ansible Control node can only reach the machines in its respective Resource Group, an error will occur as one of the machines is unreachable. Ignore the error. It's all good! :upside_down_face: <p>
-Do the same command on the other Ansible Control node.
+Since each Ansible Control node can only reach the machines in its respective Resource Group, an error will occur as one of the machines is unreachable. *Ignore the error*. It's all good! :upside_down_face: <p>
+Repeat the same command on the other Ansible Control node.
 
 <br/>
 
@@ -78,14 +78,13 @@ Type:
 ```bash
 ansible-playbook 3.Install_MySQL_Workbench.yml -l windows_servers -k
 ```
-Since we are using WinRM to acess the target machine and using an convencional password access, we need to input that. That is why we are using the `-k` command.
-After pressing `ENTER` on your keyboard, Ansible will ask you for the password:
+Since we’re using **WinRM** to access the target machine and a conventional password for access, we need to provide that password. That’s why we’re using the `-k` option. After pressing `ENTER` on your keyboard, Ansible will prompt you for the password:
 ```
 SSH password: 
 ```
 You now what's the password. Just type it in! :grin:
 
-Do the same command on the other Ansible Control node.
+Repeat the same command on the other Ansible Control node.
 
 <br/>
 
@@ -100,4 +99,4 @@ Ansible will now ask you for the vault password:
 Vault password:
 ```
 You now what's the password. Just type it in! :grin:
-Do the same command on the other Ansible Control node.
+Repeat the same command on the other Ansible Control node.

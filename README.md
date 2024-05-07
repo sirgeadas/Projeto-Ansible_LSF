@@ -39,9 +39,10 @@ Please read the `Getting Started` section to be familiar on how to get this proj
 
 #### Getting Started
 - [What you'll need](0.%20Getting%20Started/Readme.md)
-- [Part one, Terraform](0.%20Getting%20Started/Part1.md )
-- [Part two, Installing and configuring WSL](0.%20Getting%20Started/Part2.md)
-- [Part three, Configuring the Ansible Control Nodes](0.%20Getting%20Started/Part3.md)
+- [Part 1, Terraform](0.%20Getting%20Started/Part1.md )
+- [Part 2, Installing and configuring WSL](0.%20Getting%20Started/Part2.md)
+- [Part 3, Configuring the Ansible Control Nodes](0.%20Getting%20Started/Part3.md)
+- [Part 4, Configuring the Firewall on Windows Servers](0.%20Getting%20Started/Part4.md)
 
 
 ## Contribution :handshake:

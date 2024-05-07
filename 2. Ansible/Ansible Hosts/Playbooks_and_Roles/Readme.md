@@ -24,17 +24,69 @@ The `ansible.cfg` file specifies the location of the inventory, eliminating the 
 
 <br/>
 
-## Playbook number 1
+## Playbook number 1, Create_Users_and_Groups.yml
+To run this playbook, just type:
+```bash
+ansible-playbook 1.Create_Users_and_Groups.yml -l Production
+```
+<sup> Use this on the Production control node </sup>
+```bash
+ansible-playbook 1.Create_Users_and_Groups.yml -l Disaster
+```
+<sup> Use this on the Disaster control node </sup>
 
+This will create the Groups and users on the targeted machines. 
+
+>[!CAUTION]
+> Since the Windows servers machines are also included in this group, Ansible will throw an error that the machine is unreachable. Please ignore. :cowboy_hat_face:
 
 <br/>
 
-## Playbook number 2
+## Playbook number 2, Install_MySQL_and_configure.yml
+
+And now, for our next trick: Installing MySQL-Server on Debian machines.
+To run this playbook, just type:
+```bash
+ansible-playbook 2.Install_MySQL_and_configure.yml -l dbservers --ask-vault-password
+```
+Ansible will now ask you for the vault password:
+```
+Vault password:
+```
+You now what's the password. Just type it in! :grin:
+This is because there is a file that contains passwords and usernames that must remain encrypted.
+
+Since each Ansible Control node can only reach the machines in its respective Resource Group, an error will occur as one of the machines is unreachable. Ignore the error. It's all good! :upside_down_face: <p>
+Do the same command on the other Ansible Control node.
 
 <br/>
 
-## Playbook number 3
+## Playbook number 3, Install_MySQL_Workbench.yml
+Now, this role targets the Windows machines. This one was a doozy... :woozy_face: <p>
+Type:
+```bash
+ansible-playbook 3.Install_MySQL_Workbench.yml -l windows_servers -k
+```
+Since we are using WinRM to acess the target machine and using an convencional password access, we need to input that. That is why we are using the `-k` command.
+After pressing `ENTER` on your keyboard, Ansible will ask you for the password:
+```
+SSH password: 
+```
+You now what's the password. Just type it in! :grin:
+
+Do the same command on the other Ansible Control node.
 
 <br/>
 
-## Playbook number 4
+## Playbook number 4, Install_Wordpress.yml
+
+And here it is, the last one! Just type:
+```bash
+ansible-playbook 4.Install_Wordpress.yml -l webservers --ask-vault-password
+```
+Ansible will now ask you for the vault password:
+```
+Vault password:
+```
+You now what's the password. Just type it in! :grin:
+Do the same command on the other Ansible Control node.

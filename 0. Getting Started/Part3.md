@@ -106,12 +106,20 @@ The password was given by one of your collegues. Its a secret! :innocent:
 The WSL machine will output two ssh key yhrough ansible's debug module.
 Copy them and paste them on your `Github's SSH and GPG keys` (located in settings).
 
+<br>
+
 ### Step 8: Running the clonegit playbook
-type:
+Type:
 ```bash
 ansible-playbook 2_clonegit_ansible-server.yml
 ```
 
 This playbook simply does a git pull of the `Projeto-Ansible_LSF` main repository.
 
+<br>
+*** 
+
+
 The machines are ready to do ansible playbooks on the target machines. 🎉:partying_face:
+
+[Onto Part 4!](Part4.md) :arrow_forward:

@@ -41,7 +41,7 @@ ansible-playbook 1.Create_Users_and_Groups.yml -l Disaster
 This will create the Groups and users on the targeted machines. 
 
 >[!NOTE]
-> Since the Windows servers machines are also included in this group, by using the `-l Disaster` or `-l Production` in combination with the `hosts: linux_servers` on the playbook file, Ansible will only target the machines that indeed need the creation of the Group and users.:cowboy_hat_face:
+> Since the Windows servers machines are also included in this group, by using the `-l Disaster` or `-l Production` in combination with the `hosts: linux_servers` on the playbook file, Ansible will only target the machines that indeed need the creation of the Group and users. :cowboy_hat_face:
 
 <br/>
 

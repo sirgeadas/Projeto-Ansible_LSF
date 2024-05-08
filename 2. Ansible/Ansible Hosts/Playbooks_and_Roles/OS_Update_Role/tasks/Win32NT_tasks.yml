@@ -1,5 +1,5 @@
 ---
-- name: Check missing updates
+- name: Check for missing updates
   win_updates: state=searched
   register: update_count
 
@@ -12,11 +12,10 @@
     log_path: C:\\Ansible_Windows_Update_Log.txt
   register: updates
 
-- name: Detail Updates
+- name: Update details
   debug:
     var: updates
 
-- name: Restart the system if it is necessary
+- name: Reboot the system if necessary
   win_reboot:
   when: updates.reboot_required
-

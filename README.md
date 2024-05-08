@@ -43,7 +43,7 @@ Please read the `Getting Started` section to be familiar on how to get this proj
 - [Part 2, Installing and configuring WSL](0.%20Getting%20Started/Part2.md)
 - [Part 3, Configuring the Ansible Control Nodes](0.%20Getting%20Started/Part3.md)
 - [Part 4, Configuring the Firewall on Windows Servers](0.%20Getting%20Started/Part4.md)
-
+- [How to run the Playbooks](#2.%20Ansible/Ansible%20Hosts/Playbooks_and_Roles/Readme.md)
 
 ## Contribution :handshake:
 

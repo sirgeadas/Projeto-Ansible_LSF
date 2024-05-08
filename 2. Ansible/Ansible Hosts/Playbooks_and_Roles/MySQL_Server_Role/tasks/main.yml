@@ -1,25 +1,25 @@
 ---
-- name: Incluir variável para usuário, senha e nome do banco de dados
+- name: Include variable for user, password and database name
   include_vars: secrets.yml
 
-- name: Atualizar cache do repositório
+- name: Update repository cache
   apt: 
     update_cache: yes
 
-- name: Instalar o mysql-server, python3-pymyslq e python3-pip
+- name: Install mysql-server, python3-pymyslq e python3-pip
   apt:
     name: 
       - mysql-server
       - python3-pymysql
       - python3-pip
 
-- name: Garantindo que o serviço está ativo e funcionando
+- name: Make sure the service is up and running
   service:
     name: mysql
     state: started
     enabled: yes
 
-- name: Ajustando mysql_secure_installation
+- name: Setting mysql_secure_installation
   expect:
     command: mysql_secure_installation
     responses:
@@ -35,7 +35,7 @@
     MYSQL_PWD: "{{root_password}}"
   register: mysql_secure
 
-- name: Configurando senha do root
+- name: Configure root password
   mysql_user:
     name: root
     password: "{{root_password}}"
@@ -45,7 +45,7 @@
     login_password: '{{root_password}}'
     state: present
 
-- name: Criando database
+- name: Create database
   mysql_db:
     name: "{{db_name}}"
     state: present
@@ -54,7 +54,7 @@
     encoding: utf8mb4
     collation: utf8mb4_bin
 
-- name: Criando usuário admin para acesso remoto
+- name: Create admin user to remote access
   mysql_user:
     name: "{{admin_user}}"
     password: "{{admin_password}}"
@@ -66,7 +66,7 @@
     state: present
 
 
-- name: Mudar para 1 a variável log_bin_trust_function_creators
+- name: Change to 1 the variable log_bin_trust_function_creators
   lineinfile:
     dest: /etc/mysql/mysql.conf.d/mysqld.cnf
     line: "log-bin-trust-function-creators = 1"
@@ -77,5 +77,5 @@
     regexp: '^bind-address'
     line: 'bind-address = 0.0.0.0'    
   notify: 
-  - Reinicar o MySQL
+  - Restart MySQL
 

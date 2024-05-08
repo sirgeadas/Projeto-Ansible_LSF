@@ -85,7 +85,7 @@ Since we’re using **WinRM** to access the target machine and a conventional pa
 ```
 SSH password: 
 ```
-You now what's the password. Just type it in! :grin:
+You know what's the password. Just type it in! :grin:
 
 Repeat the same command on the other Ansible Control node.
 

@@ -1,2 +1,0 @@
-ansible_user: controlnodedr
-ansible_key: ~/.ssh/ControlNodeDR

@@ -79,4 +79,17 @@
       pip:
         name: "pywinrm>=0.3.0"        
 
+    - name: Enable Firewall
+      command: ufw --force enable
+      register: ufw
+      changed_when: "'Firewall is active and enabled' in ufw.stdout"
 
+    - name: Allow SSH (Port 22)
+      ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Deny all other incoming traffic
+      ufw:
+        direction: incoming
+        policy: deny

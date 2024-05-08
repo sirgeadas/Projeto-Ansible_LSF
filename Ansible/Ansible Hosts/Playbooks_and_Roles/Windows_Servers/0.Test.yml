@@ -1,0 +1,15 @@
+---
+- name: Install MySQL Workbench on Windows
+  hosts: windows_servers
+  gather_facts: no
+
+ # roles:
+  #  - role: MySQL_Workbench_Role
+
+  tasks:
+    - name: Install MySQL Workbench
+      win_chocolatey:
+        name: mysql.workbench
+        version: '8.0.36'
+        source: https://community.chocolatey.org/api/v2/
+        state: present    

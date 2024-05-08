@@ -1,5 +1,5 @@
 galaxy_info:
-  author: Sara Peres, Ludmilla Guimarães e Filipe Geadas
+  author: Sara Peres, Ludmilla Guimarães and Filipe Geadas
   description: This role updates the operating system, whether it is Debian or Windows.
   company: UpSkill
 

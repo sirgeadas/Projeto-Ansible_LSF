@@ -51,7 +51,7 @@ This will create the Groups and users on the targeted machines.
 And now, for our next trick: Installing MySQL-Server on Debian machines.
 To run this playbook, just type:
 ```bash
-ansible-playbook 2.Install_MySQL_and_configure.yml -l dbservers --ask-vault-password
+ansible-playbook 2.Install_MySQL_and_configure.yml --ask-vault-password
 ```
 Ansible will now ask you for the vault password:
 ```
@@ -80,13 +80,13 @@ Repeat the same command on the other Ansible Control node.
 Now, this role targets the Windows machines. This one was a doozy... :woozy_face: <p>
 Type:
 ```bash
-ansible-playbook 3.Install_MySQL_Workbench.yml -l windows_servers -k
+ansible-playbook 3.Install_MySQL_Workbench.yml -l windows_servers -k --ask-vault-password
 ```
 Since we’re using **WinRM** to access the target machine and a conventional password for access, we need to provide that password. That’s why we’re using the `-k` option. After pressing `ENTER` on your keyboard, Ansible will prompt you for the password:
 ```
 SSH password: 
 ```
-You now what's the password. Just type it in! :grin:
+You know what's the password. Just type it in! :grin:
 
 Repeat the same command on the other Ansible Control node.
 

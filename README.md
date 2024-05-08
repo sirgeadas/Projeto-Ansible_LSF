@@ -43,7 +43,7 @@ Please read the `Getting Started` section to be familiar on how to get this proj
 - [Part 2, Installing and configuring WSL](0.%20Getting%20Started/Part2.md)
 - [Part 3, Configuring the Ansible Control Nodes](0.%20Getting%20Started/Part3.md)
 - [Part 4, Configuring the Firewall on Windows Servers](0.%20Getting%20Started/Part4.md)
-- [How to run the Playbooks](#2.%20Ansible/Ansible%20Hosts/Playbooks_and_Roles/Readme.md)
+- [How to run the Playbooks](2.%20Ansible/Ansible%20Hosts/Playbooks_and_Roles/Readme.md)
 
 ## Contribution :handshake:
 
@@ -51,4 +51,4 @@ If you wish to contribute, please contact us. Cheers!
 
 ## License :scroll:
 
-This project is licensed under the MIT License - See the [LICENSE.md](#license-) file for details.
+This project is licensed under the MIT License - See the [LICENSE.md](#LICENSE.md) file for details.

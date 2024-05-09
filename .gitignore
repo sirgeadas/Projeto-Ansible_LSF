@@ -20,7 +20,7 @@ ssh_keys.zip
 
 # Local .terraform directories
 **/.terraform/*
-
+.terraform.lock.hd
 # .tfstate files
 *.tfstate
 *.tfstate.*

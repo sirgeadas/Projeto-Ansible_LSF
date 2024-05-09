@@ -554,7 +554,7 @@ resource "azurerm_virtual_machine" "WINDOWS-DR" {
 
 # WINDOWS SERVER DR NSG ----------------#
 resource "azurerm_network_security_group" "grupo2-neu-dr-WINDOWSSERVER-nsg" {
-  name                = "Grupo2-WEU-PROD-WINDOWSSERVER-NSG"
+  name                = "Grupo2-WEU-DR-WINDOWSSERVER-NSG"
   location            = var.Disrec
   resource_group_name = var.Default_RG_Disrec
   security_rule {

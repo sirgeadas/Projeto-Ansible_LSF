@@ -5,7 +5,6 @@
   apt:
     update_cache: yes
     upgrade: yes
-  when: ansible_os_family == 'Debian'
 
 - name: Install ansible, Python3-pip
   become: yes
@@ -16,6 +15,7 @@
     state: present
 
 - name: Install pywinrm
+  become: yes
   pip:
     name: "pywinrm>=0.3.0"          
 
@@ -29,7 +29,6 @@
   register: ssh_pub_key_output
 
 - name: Start SSH agent and add SSH key
-  #become: yes
   shell: |
     eval $(ssh-agent)
     ssh-add ~/.ssh/{{ GH_key_name }}
@@ -54,35 +53,45 @@
     name: github.com
     key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
 
-- name: Display SSH public key
-  debug:
-    var: ssh_pub_key_output.stdout
+- name: Check if UFW is enabled
+  command: ufw status
+  register: ufw_status
+  changed_when: false
+  become: yes
 
 - name: Enable Firewall
   command: ufw --force enable
   register: ufw
-  changed_when: "'Firewall is active and enabled' in ufw.stdout"
+  when: "'inactive' in ufw_status.stdout"
+  become: yes
 
 - name: Allow SSH (Port 22)
   ufw:
     rule: allow
     name: OpenSSH
+  when: "'inactive' in ufw_status.stdout"
+  become: yes
 
 - name: Deny all other incoming traffic
   ufw:
     direction: incoming
     policy: deny
+  when: "'inactive' in ufw_status.stdout"
+  become: yes
 
-tasks:
-  - name: Copy the Host SSH keys
-    copy:
-      src: "{{ item }}"
-      dest: "~/.ssh/{{ item | basename }}"
-      owner: "{{ ansible_user }}"
-      group: "{{ ansible_user_id }}"
-      mode: '0600'
-    loop: "{{ ssh_keys }}"
+- name: Copy the Host SSH keys
+  copy:
+    src: "{{ item }}"
+    dest: "~/.ssh/{{ item | basename }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0600'
+  loop: "{{ ssh_keys }}"
 
-  - name: Success!
-    debug:
-      msg: "The Playbook is done. Machines are now Ansible Control nodes! Relax and drink your victory coffee! ☕️"
+- name: Success!
+  debug:
+    msg: "The Playbook is done. Machines are now Ansible Control nodes! Relax and drink your victory coffee! ☕️"
+
+- name: Add this SSH key to http://www.github.com > Your Profile > Settings > SSH and GPG keys
+  debug:
+    var: ssh_pub_key_output.stdout    

@@ -1,91 +1,19 @@
 ---
 - name: Update the Server, Setup SSH Key and Git Repository, and change the permissions of the Host keys
-  hosts: ansible_servers
   gather_facts: yes
 
-  vars:
-    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"  # Disable strict host key checking
-    ansible_ssh_private_key_file: "~/.ssh/{{ GH_key_name }}"
-    vault_email_address: !vault |
-              $ANSIBLE_VAULT;1.1;AES256
-              63386664353836333035353163323638663762376334666463333932366565376439613462303232
-              3131313838656564636533346531656466666138343666310a376331336535653464373436396439
-              65663138326164353763376535666563376561633164626265383435333336656534666162326665
-              6562623833313633650a303137396337633331396237386564356132663339353037633735323036
-              30356639616331326236366232653062663165623339303666356634663436313962
+- hosts: ansible_prod
+  roles:
+    - role: Setup_Ansible_Server_Role
+      vars:
+        ssh_keys:
+          - files/WebServerPROD 
+          - files/DatabaseServerPROD 
 
-    GH_key_name: "{{ 'AnsibleGH_Prod' if 'ansible_prod' in group_names else 'AnsibleGH_DR' }}"
-
-  tasks:
-    - name: Update and upgrade repos
-      become: yes
-      apt:
-        update_cache: yes
-        upgrade: yes
-      when: ansible_os_family == 'Debian'
-
-    - name: Install ansible, Python3-pip
-      become: yes
-      apt:
-        name: 
-          - ansible
-          - python3-pip
-        state: present
-
-    - name: Install pywinrm
-      pip:
-        name: "pywinrm>=0.3.0"          
-
-    - name: Generate SSH key
-      shell: ssh-keygen -t ed25519 -C "{{ vault_email_address }}" -f ~/.ssh/{{ GH_key_name }} -N ""
-      args:
-        creates: "~/.ssh/{{ GH_key_name }}"
-
-    - name: Print SSH public key
-      command: cat ~/.ssh/{{ GH_key_name }}.pub
-      register: ssh_pub_key_output
-
-    - name: Start SSH agent and add SSH key
-      #become: yes
-      shell: |
-        eval $(ssh-agent)
-        ssh-add ~/.ssh/{{ GH_key_name }}
-
-    - name: Create the config file
-      file:
-        path: ~/.ssh/config
-        state: touch
-        mode: '0660'
-
-    - name: Create SSH config file
-      blockinfile:
-        path: ~/.ssh/config
-        block: |
-          Host github.com
-            IdentityFile ~/.ssh/{{ GH_key_name }}
-            IdentitiesOnly yes
-
-    - name: Add GitHub to known hosts
-      known_hosts:
-        path: ~/.ssh/known_hosts
-        name: github.com
-        key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
-
-    - name: Display SSH public key
-      debug:
-        var: ssh_pub_key_output.stdout
-
-    - name: Enable Firewall
-      command: ufw --force enable
-      register: ufw
-      changed_when: "'Firewall is active and enabled' in ufw.stdout"
-
-    - name: Allow SSH (Port 22)
-      ufw:
-        rule: allow
-        name: OpenSSH
-
-    - name: Deny all other incoming traffic
-      ufw:
-        direction: incoming
-        policy: deny
+- hosts: ansible_dr
+  roles:
+    - role: Setup_Ansible_Server_Role
+      vars:
+        ssh_keys:
+          - files/WebServerDR 
+          - files/DatabaseServerDR 

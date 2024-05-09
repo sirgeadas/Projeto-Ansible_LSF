@@ -1,0 +1,88 @@
+---
+
+- name: Update and upgrade repos
+  become: yes
+  apt:
+    update_cache: yes
+    upgrade: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install ansible, Python3-pip
+  become: yes
+  apt:
+    name: 
+      - ansible
+      - python3-pip
+    state: present
+
+- name: Install pywinrm
+  pip:
+    name: "pywinrm>=0.3.0"          
+
+- name: Generate SSH key
+  shell: ssh-keygen -t ed25519 -C "{{ vault_email_address }}" -f ~/.ssh/{{ GH_key_name }} -N ""
+  args:
+    creates: "~/.ssh/{{ GH_key_name }}"
+
+- name: Print SSH public key
+  command: cat ~/.ssh/{{ GH_key_name }}.pub
+  register: ssh_pub_key_output
+
+- name: Start SSH agent and add SSH key
+  #become: yes
+  shell: |
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/{{ GH_key_name }}
+
+- name: Create the config file
+  file:
+    path: ~/.ssh/config
+    state: touch
+    mode: '0660'
+
+- name: Create SSH config file
+  blockinfile:
+    path: ~/.ssh/config
+    block: |
+      Host github.com
+        IdentityFile ~/.ssh/{{ GH_key_name }}
+        IdentitiesOnly yes
+
+- name: Add GitHub to known hosts
+  known_hosts:
+    path: ~/.ssh/known_hosts
+    name: github.com
+    key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
+
+- name: Display SSH public key
+  debug:
+    var: ssh_pub_key_output.stdout
+
+- name: Enable Firewall
+  command: ufw --force enable
+  register: ufw
+  changed_when: "'Firewall is active and enabled' in ufw.stdout"
+
+- name: Allow SSH (Port 22)
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Deny all other incoming traffic
+  ufw:
+    direction: incoming
+    policy: deny
+
+tasks:
+  - name: Copy the Host SSH keys
+    copy:
+      src: "{{ item }}"
+      dest: "~/.ssh/{{ item | basename }}"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user_id }}"
+      mode: '0600'
+    loop: "{{ ssh_keys }}"
+
+  - name: Success!
+    debug:
+      msg: "The Playbook is done. Machines are now Ansible Control nodes! Relax and drink your victory coffee! ☕️"

@@ -1,5 +1,5 @@
 galaxy_info:
-  author: Sara Peres, Ludmilla Guimarães e Filipe Geadas
+  author: Sara Peres, Ludmilla Guimarães and Filipe Geadas
   description: This role installs MySQL Server on a Debian machine.
   company: UpSkill
 

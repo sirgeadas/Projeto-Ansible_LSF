@@ -1,3 +1,4 @@
+pantera
 # How-to run the playbooks:
 ***
 
@@ -16,7 +17,7 @@ If you take a look at the playbooks, they start with a number:
 On your control node, navigate to the following directory:
 
 ```bash
-cd ~/GitHub/2.\ Ansible/Ansible\ Hosts/Playbooks_and_Roles/
+cd ~/Github/2.\ Ansible/Ansible\ Hosts/Playbooks_and_Roles/
 ```
 
 This directory serves as the base from which all commands will be deployed. Within this directory, you’ll find folders containing roles, playbooks, and an `ansible.cfg` file. <p>
@@ -50,7 +51,7 @@ This will create the Groups and users on the targeted machines.
 And now, for our next trick: Installing MySQL-Server on Debian machines.
 To run this playbook, just type:
 ```bash
-ansible-playbook 2.Install_MySQL_and_configure.yml -l dbservers --ask-vault-password
+ansible-playbook 2.Install_MySQL_and_configure.yml --ask-vault-password
 ```
 Ansible will now ask you for the vault password:
 ```
@@ -79,13 +80,13 @@ Repeat the same command on the other Ansible Control node.
 Now, this role targets the Windows machines. This one was a doozy... :woozy_face: <p>
 Type:
 ```bash
-ansible-playbook 3.Install_MySQL_Workbench.yml -l windows_servers -k
+ansible-playbook 3.Install_MySQL_Workbench.yml -k --ask-vault-password
 ```
 Since we’re using **WinRM** to access the target machine and a conventional password for access, we need to provide that password. That’s why we’re using the `-k` option. After pressing `ENTER` on your keyboard, Ansible will prompt you for the password:
 ```
 SSH password: 
 ```
-You now what's the password. Just type it in! :grin:
+You know what's the password. Just type it in! :grin:
 
 Repeat the same command on the other Ansible Control node.
 
@@ -93,9 +94,9 @@ Repeat the same command on the other Ansible Control node.
 
 ## Playbook \#4, Install_Wordpress.yml
 
-And here it is, the last one! Just type:
+You know what to do, type:
 ```bash
-ansible-playbook 4.Install_Wordpress.yml -l webservers --ask-vault-password
+ansible-playbook 4.Install_Wordpress.yml --ask-vault-password
 ```
 Ansible will now ask you for the vault password:
 ```
@@ -103,3 +104,27 @@ Vault password:
 ```
 You now what's the password. Just type it in! :grin:
 Repeat the same command on the other Ansible Control node.
+
+<br/>
+
+## Playbook \#5, Update the OS
+
+And here it is, the last one! Just type:
+```bash
+ansible-playbook 5.OS_Update.yml -l windows_servers -k
+```
+You now what's the password. Just type it in! :grin: <p>
+This will only target the Windows machines. Since there is one Windows machine per Resource Group, it'll throw an error saying that the other host is unreachable. That's OK!
+
+Repeat the same command on the other Ansible Control node.
+
+Do this command for Linux machines:
+
+```bash
+ansible-playbook 5.OS_Update.yml -l linux_servers
+```
+
+Again, this will only target the Windows machines. Since there is one Windows machine per Resource Group, it'll throw an error saying that the other host is unreachable. That's OK!
+
+
+And we are done! :cut_of_meat:

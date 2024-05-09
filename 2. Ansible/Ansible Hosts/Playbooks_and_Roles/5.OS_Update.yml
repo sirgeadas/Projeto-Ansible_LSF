@@ -1,5 +1,5 @@
 ---
-- name: Atualização dos Sistemas operativos
+- name: Update the OS 
   hosts: all
   gather_facts: true
 

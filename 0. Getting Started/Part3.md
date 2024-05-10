@@ -104,8 +104,8 @@ The `--ask-vault-password` is required because there's variables that must parse
 The password was given by one of your collegues. Its a secret! :innocent:
 
 **The WSL machine will output two SSH key's through ansible's debug module.** <p>
-Go to the page https://github.com, click on your account settings, and select `Github's SSH and GPG keys`.
-Create two new keys and paste the key that the WSL Ansible machine gave you when you ran this playbook.
+Go to the page https://github.com, click on your account settings, and select `Github's SSH and GPG keys`. <p>
+Create two new keys and paste the key that the WSL Ansible machine gave you when you ran this playbook. <p>
 This is because everytime the Ansible machines (the ones in Azure) need to do a Git (push, pull, clone, etc..),
 they do it using SSH.
 

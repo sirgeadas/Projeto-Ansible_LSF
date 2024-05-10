@@ -4,7 +4,7 @@ Terraform Files/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.9
 ssh_keys
 ssh_keys.zip
 .vscode/settings.json
-
+*.rdp
 
 #.gitignore
 .vscode/*

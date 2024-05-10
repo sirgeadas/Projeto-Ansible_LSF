@@ -88,6 +88,12 @@ SSH password:
 ```
 You know what's the password. Just type it in! :grin:
 
+And then, Ansible will ask you for the Vault password, because we are parsing encrypted variables. The prompt should look like this:
+```
+Vault password: 
+```
+Type the password, and the playbook will start. You know the password! 😺
+<p></p>
 Repeat the same command on the other Ansible Control node.
 
 <br/>

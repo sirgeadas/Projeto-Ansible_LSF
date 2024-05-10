@@ -99,12 +99,15 @@ type:
 ```bash
 ansible-playbook 1_setup_ansible-server.yml --ask-vault-password
 ```
-This playbook will install and configure everything and turn the machines into ansible control nodes. :dart:
+This role will install and configure everything and turn the machines into ansible control nodes. :dart:
 The `--ask-vault-password` is required because there's variables that must parse sensitive data, so it must be encrypted.
 The password was given by one of your collegues. Its a secret! :innocent:
 
-The WSL machine will output two ssh key yhrough ansible's debug module.
-Copy them and paste them on your `Github's SSH and GPG keys` (located in settings).
+The WSL machine will output two SSH key's through ansible's debug module.
+Go to the page https://github.com, click on your account settings, and select `Github's SSH and GPG keys`.
+Create two new keys and paste the key that the WSL Ansible machine gave you when you ran this playbook.
+This is because everytime the Ansible machines (the ones in Azure) need to do a Git (push, pull, clone, etc..),
+they do it using SSH.
 
 <br>
 

@@ -1,19 +1,5 @@
----
-- name: Update the Server, Setup SSH Key and Git Repository, and change the permissions of the Host keys
+- name: Update the Server, Setup SSH Key and Git Repository, changes the permissions of the Host keys and copies the Hosts SSH Keys
+  hosts: ansible_servers
   gather_facts: yes
-
-- hosts: ansible_prod
   roles:
     - role: Setup_Ansible_Server_Role
-      vars:
-        ssh_keys:
-          - files/WebServerPROD 
-          - files/DatabaseServerPROD 
-
-- hosts: ansible_dr
-  roles:
-    - role: Setup_Ansible_Server_Role
-      vars:
-        ssh_keys:
-          - files/WebServerDR 
-          - files/DatabaseServerDR 

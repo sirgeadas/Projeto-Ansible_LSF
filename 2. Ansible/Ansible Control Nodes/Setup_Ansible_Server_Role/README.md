@@ -1,38 +1,50 @@
-Role Name
-=========
+# Ansible Control Node Setup Role
 
-A brief description of the role goes here.
+This Ansible role sets up an Ansible control node. It performs the following tasks:
 
-Requirements
-------------
+- Updates and upgrades repositories
+- Installs Ansible and Python3-pip
+- Installs pywinrm
+- Generates an SSH key
+- Prints the SSH public key
+- Starts the SSH agent and adds the SSH key
+- Creates an SSH config file
+- Adds GitHub to known hosts
+- Checks if UFW is enabled and enables it if not
+- Allows SSH (Port 22) through the firewall
+- Denies all other incoming traffic
+- Copies the host SSH keys
+- Displays a success message
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Requirements
 
-Role Variables
---------------
+This role requires Ansible 2.9 or higher.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+The variables that can be passed to this role and a brief description about them are as follows:
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- `vault_email_address`: The email address used when generating the SSH key.
+- `GH_key_name`: The name of the GitHub key.
+- `ssh_keys`: The SSH keys to copy.
 
-Example Playbook
-----------------
+## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Here is an example playbook:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: servers
+  roles:
+    - { role: ansible_control_node_setup }
+```
 
-License
+### License
+-------
+GPL
+
+### Author Information
 -------
 
-BSD
+This role was created by LSF. You can reach me at (https://github.com/sirgeadas/Projeto-Ansible_LSF)
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Feel free to customize this role to fit your specific requirements and contribute back to the Ansible community. Thank you for using this role!

@@ -124,6 +124,6 @@ This playbook simply does a git pull of the `Projeto-Ansible_LSF` main repositor
 *** 
 
 
-The machines are ready to do ansible playbooks on the target machines. 🎉:partying_face:
+The machines are ready to do ansible playbooks on the target machines. 🎉
 
 [Onto Part 4!](Part4.md) :arrow_forward:

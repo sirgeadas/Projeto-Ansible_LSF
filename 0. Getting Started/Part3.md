@@ -120,6 +120,7 @@ ansible-playbook 2_clonegit_ansible-server.yml
 This playbook simply does a git pull of the `Projeto-Ansible_LSF` main repository.
 
 <br>
+
 *** 
 
 

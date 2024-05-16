@@ -79,19 +79,13 @@ Repeat the same command on the other Ansible Control node.
 Now, this role targets the Windows machines. This one was a doozy... :woozy_face: <p>
 Type:
 ```bash
-ansible-playbook 3.Install_MySQL_Workbench.yml -k --ask-vault-password
+ansible-playbook 3.Install_MySQL_Workbench.yml -k 
 ```
 Since we’re using **WinRM** to access the target machine and a conventional password for access, we need to provide that password. That’s why we’re using the `-k` option. After pressing `ENTER` on your keyboard, Ansible will prompt you for the password:
 ```
 SSH password: 
 ```
 You know what's the password. Just type it in! :grin:
-
-And then, Ansible will ask you for the Vault password, because we are using encrypted variables. The prompt should look like this:
-```
-Vault password: 
-```
-Type the password, and the playbook will start. You know the password! 😺
 <p></p>
 Repeat the same command on the other Ansible Control node.
 

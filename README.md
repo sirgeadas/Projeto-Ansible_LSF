@@ -5,7 +5,7 @@
 
 <br/>
 
-This project uses **ansible** nad **Terraform** to create and manage the Infrastructure hosted in Microsoft **Azure**.
+This project uses **ansible** and **Terraform** to create and manage the Infrastructure hosted in Microsoft **Azure**.
 
 <br/>
 
